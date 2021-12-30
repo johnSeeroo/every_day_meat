@@ -94,7 +94,7 @@
                         <div *ngIf="!(product.out_of_stock)" class="d-flex align-items-center">
                           <div class="d-flex pr-3 align-items-center">
                             <label class="mb-0">Qty</label>
-                            <input type="number" formControlName="quantity" class="form-control">
+                            <input type="text" formControlName="quantity" class="form-control">
                           </div>
                           <button (click)="addProductToCart(product,quantityForm.value.quantity)" class="add_button ml-auto">ADD</button>
                         </div>

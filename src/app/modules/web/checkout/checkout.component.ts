@@ -144,13 +144,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   placeOrder(){
-    console.log("this is the time slot " + this.checkOutForm.value.selectedTimeSlot);
-    console.log("this is the payment method " + this.checkOutForm.value.selectedPayment);
-    if(this.checkOutForm.value.selectedPayment == ''){
-      this.modalService.showNotification("Select a payment method");
-      return;
-    }else if( this.checkOutForm.value.selectedTimeSlot == ''){
+    if( this.checkOutForm.value.selectedTimeSlot == ''){
       this.modalService.showNotification("Select a time slot");
+      return;
+    }else if(this.checkOutForm.value.selectedPayment == ''){
+      this.modalService.showNotification("Select a payment method");
       return;
     }else if(this.addressData == undefined){
       this.modalService.showNotification("Add an address to proceed");

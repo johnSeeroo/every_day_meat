@@ -34,13 +34,15 @@ export class ViewAddressComponent implements OnInit {
         // Validators.minLength(10),
         // Validators.maxLength(10),
       ]],
-      phoneNumber: ['', [
-        Validators.required,
-        // Validatespace,
-        // phoneNumberValidator,
-        // Validators.minLength(10),
-        // Validators.maxLength(10),
-      ]],
+      phoneNumber: ['' 
+      // ,[
+      //   Validators.required,
+      //   Validatespace,
+      //   phoneNumberValidator,
+      //   Validators.minLength(10),
+      //   Validators.maxLength(10),
+      // ]
+    ],
       buildingName: ['', Validators.required],
       flatNumber: [''],
       street: ['', Validators.required],
@@ -48,7 +50,7 @@ export class ViewAddressComponent implements OnInit {
       pincode: ['', Validators.required],
       city: ['', Validators.required],
       addressAudio: [''],
-      zip: ['', Validators.required],
+      zip: [''],
     });
   }
 
@@ -95,6 +97,7 @@ export class ViewAddressComponent implements OnInit {
 
   onSubmit(){
     console.log(this.addressForm)
+    this.issubmitted = true;
     if(this.addressForm.status != 'VALID'){
       return
     }

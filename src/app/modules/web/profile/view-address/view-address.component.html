@@ -19,20 +19,32 @@
                 <div class="col-6">
                     <label class="form-label">Name</label>
                       <input type="text" class="form-control" formControlName="name">
+                      <div *ngIf="issubmitted && addressForm.controls.name.errors" class="error_signup"> 
+                        <small *ngIf="issubmitted && addressForm.controls.name.errors.required"> Name is required. </small>
+                      </div>
                     </div>
+                    
                     <div class="col-6">
                         <label class="form-label">Email</label>
                           <input type="text" class="form-control" formControlName="email">
+                          <div *ngIf="issubmitted && addressForm.controls.email.errors" class="error_signup"> 
+                            <small *ngIf="issubmitted && addressForm.controls.email.errors.required"> Email is required. </small>
+                          </div>
                         </div>
+                        
               </div>
               <div class="form-row">              
                 <div class="col-6">
                 <label class="form-label">Building name</label>
                   <input type="text" class="form-control" formControlName="buildingName">
+                  <div *ngIf="issubmitted && addressForm.controls.buildingName.errors" class="error_signup"> 
+                    <small *ngIf="issubmitted && addressForm.controls.buildingName.errors.required"> Building name is required. </small>
+                  </div>
                 </div>
                 <div class="col-6">
                     <label class="form-label">Flat number</label>
                   <input type="text" class="form-control" formControlName="flatNumber">
+                 
                 </div>
               </div>
               <div class="form-row">
@@ -40,20 +52,32 @@
                 <div class="col-6">
                 <label class="form-label">Street</label>
                   <input type="text" class="form-control" formControlName="street">
+                  <div *ngIf="issubmitted && addressForm.controls.street.errors" class="error_signup"> 
+                    <small *ngIf="issubmitted && addressForm.controls.street.errors.required"> Street is required. </small>
+                  </div>
                 </div>
                 <div class="col-6">
                     <label class="form-label">Street 2</label>
                   <input type="text" class="form-control" formControlName="street2">
+                  <div *ngIf="issubmitted && addressForm.controls.street2.errors" class="error_signup"> 
+                    <small *ngIf="issubmitted && addressForm.controls.street2.errors.required"> Street 2 is required. </small>
+                  </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col-6">
                     <label class="form-label">City</label>
                       <input type="text" class="form-control" formControlName="city">
+                      <div *ngIf="issubmitted && addressForm.controls.city.errors" class="error_signup"> 
+                        <small *ngIf="issubmitted && addressForm.controls.city.errors.required"> City is required. </small>
+                      </div>
                     </div>
                     <div class="col-6">
                         <label class="form-label">Pincode</label>
                           <input type="text" class="form-control" formControlName="pincode">
+                          <div *ngIf="issubmitted && addressForm.controls.pincode.errors" class="error_signup"> 
+                            <small *ngIf="issubmitted && addressForm.controls.pincode.errors.required"> Pincode is required. </small>
+                          </div>
                         </div>
               </div>
 
@@ -66,6 +90,9 @@
                 <div class="col-6">
                     <label class="form-label">Mobile number</label>
                   <input type="text" class="form-control" formControlName="mobileNumber">
+                  <div *ngIf="issubmitted && addressForm.controls.mobileNumber.errors" class="error_signup"> 
+                    <small *ngIf="issubmitted && addressForm.controls.mobileNumber.errors.required"> Mobile number is required. </small>
+                  </div>
                 </div>
               </div>
 

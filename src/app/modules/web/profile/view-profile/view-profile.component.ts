@@ -65,8 +65,10 @@ export class ViewProfileComponent implements OnInit {
   }
 
   onSubmit(){
+    debugger
+    this.issubmitted = true;
     if(this.profileForm.status != 'VALID'){
-      return
+      return;
     }
     else{
       this.issubmitted = true;

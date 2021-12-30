@@ -30,6 +30,7 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   onSubmit(){
+    this.issubmitted = true;
     if(this.updatePasswordForm.status != 'VALID'){
       return;
     }else{
