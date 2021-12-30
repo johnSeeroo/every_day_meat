@@ -1,0 +1,128 @@
+<main role="main" class="content_area">
+  
+  
+    <!--mobile show-->
+    <div class="tab_show mobile_sort_filter ">
+      <div class="container">
+        <div class="row">
+          <div class="dropdown col-6">
+            <div id="sort_accordion">
+              <div class="filter_menu1"> <a href="#sortModal" data-toggle="modal" ><img src="assets/images/sort.png">Sort</a> </div>
+            </div>
+          </div>
+          <div class="dropdown mr-auto col-6">
+            <div id="filter_accordian">
+              <div class="filter_menu1"> <a href="#filterModal" data-toggle="modal" ><img src="assets/images/filter.png">Filter</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sort Modal -->
+    <div class="modal" id="sortModal">
+      <div class="modal-dialog">
+        <div class="modal-content"> 
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <ul class="select_sort">
+              <li>
+                <label class="radiocontainer">Popularity
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">Price - Low to High
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">Price - High to Low
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">Alphabetical
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">% Off - High to Low
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="breadcrumb_block">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><span>Category Name</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="listing_page">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-lg-12 col-xl-12">
+                  <ul class="row outfit_listings">
+                    <ng-container *ngFor="let product of productList">
+                    <li class="item">
+                      <div class="sellers_thumb"> 
+                        <form [formGroup]="quantityForm" >
+                        <a (click)="productViewPage(product)">
+                          <img src="{{product.image_url}}" alt="" class="mw-100">
+                        <h3>{{product.en_lang}}</h3>
+                        <h4>INR {{product.price}}/{{product.unit}}</h4>
+                      </a>
+                        <div  *ngIf="product.out_of_stock" class="d-flex align-items-center">
+                          <button (click)="notifyOnAvailability(product)" class="add_button ml-auto mr-auto">Notify Me</button>
+                        </div>
+                        <div *ngIf="!(product.out_of_stock)" class="d-flex align-items-center">
+                          <div class="d-flex pr-3 align-items-center">
+                            <label class="mb-0">Qty</label>
+                            <input type="number" formControlName="quantity" class="form-control">
+                          </div>
+                          <button (click)="addProductToCart(product,quantityForm.value.quantity)" class="add_button ml-auto">ADD</button>
+                        </div>
+                    </form>
+                      </div>
+                    </li>
+                  </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="col-md-12" *ngIf="productList.length > 0 && totalPages != '0'">
+          <nav aria-label="Page navigation" class="float-right">
+            <ul class="pagination">
+              <li class="page-item"> <a class="page-link" (click)="previousPageSelect()" aria-label="Previous"> <span
+                    aria-hidden="previousShow">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>
+              <ng-container *ngFor="let number of numberpages">
+                <li class="page-item" id="pages{{number}}"><a class="page-link"
+                    (click)="pageselect(number)">{{number}}</a></li>
+              </ng-container>
+              <li class="page-item"> <a class="page-link" (click)="nextPageSelect()" aria-label="Next"> <span
+                    aria-hidden="nextShow">&raquo;</span> <span class="sr-only">Next</span> </a> </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </main>

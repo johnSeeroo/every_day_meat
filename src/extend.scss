@@ -1,0 +1,19 @@
+@import 'variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+/****=====Extend Styles=====***/
+/*button*/
+%redbutton {padding: 11px 50px;border-radius: 50px;background: $redcolor;color: #fff;display: inline-block;font-weight: 500;font-size: 15px;}
+%redbuttonhover{background: $redhovercolor;color: #fff;padding: 11px 45px 11px 55px;}
+%redlinebutton {padding: 7px 25px;border-radius: 50px;background: #fff;border: solid 1px $redcolor;color: $redcolor;;display: inline-block;font-weight: 500;font-size: 14px;}
+%redlinebuttonhover{    background: $redcolor;color: #fff;padding: 7px 20px 7px 30px;}
+%transition_style {
+-moz-transition: all 0.4s ease-in-out;
+-o-transition: all 0.4s ease-in-out;
+-webkit-transition: all 0.4s ease-in-out;
+-ms-transition: all 0.4s ease-in-out;
+transition: all 0.4s ease-in-out;
+}
+%fontregular{font-family: 'poppinsregular' !important;}
+%fontmedium{font-family: 'poppinsmedium' !important;}
+%fontsemibold{font-family: 'poppinssemibold' !important;}
+%font_family{font-family: "Poppins", sans-serif !important;}

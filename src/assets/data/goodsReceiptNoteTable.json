@@ -1,0 +1,4 @@
+{
+    "tableHeaders": ["GRN Name", "GRN Date", "GRN Status", "Action"],
+    "tableFields": ["goodsReceiptName", "dateReceived","grnStatus", "action"]
+    }

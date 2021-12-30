@@ -1,0 +1,4 @@
+{
+    "headers":["Address line 1", "Address line 2", "City", "State", "Country", "Zip/Postal code", "Phone", "Alternative phone", "Email", "Alternative email" ],
+    "fields": ["addressLine1", "addressLine2", "city", "state", "country", "pincode", "phoneNumber", "altphoneNumber", "emailAddress", "altemailAddress" ]
+}

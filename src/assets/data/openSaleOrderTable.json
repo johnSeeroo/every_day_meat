@@ -1,0 +1,11 @@
+
+ {
+    "tableHeaders": ["Order #","Customer","Total Amount","Delivery Dedline","Sale Items","Ingredient","Production","Delivery"],
+  
+    "tableFields": ["workOrderCode","customer","totalAmount","deliveryDedline","saleItems","ingredient","production","Delivery"],
+    "displayedColumnFilters" : [
+       "orderNumberFilter", "customerFilter","totalAmountFilter","deliveryDedlineFilter","saleItemsFilter","ingredientFilter","productionFilter","deliveryFilter"
+      ]
+    }
+  
+  

@@ -1,0 +1,5 @@
+{
+    "tableHeaders":["Expected","Quantity","Deadline"],
+    "tableFields":["expected","quantity","deadline"],
+    "displayedColumnFilters" : ["expectedFilter","quantityFilter","deadlineFilter"]
+}

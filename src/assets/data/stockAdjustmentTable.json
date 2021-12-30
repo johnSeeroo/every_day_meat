@@ -1,0 +1,10 @@
+{
+    "tableHeaders": ["SA#","Adjustment Date","Reason", "Value"   
+    ],
+    "tableFields": ["stockAdjustmentNo","adjustmentDate","reason", "value"],
+    "displayedColumnFilters" : [
+        "saFilter", "adjustmentDateFilter", "reasonFilter", "valueFilter"
+      
+      ]
+
+}

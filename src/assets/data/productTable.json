@@ -1,0 +1,5 @@
+{
+    "tableHeaders": [	"ID",	"Product name",	"Category",	"UOM", "sale price", "Cost", "Profit", "Margin", "Action" ],
+    "tableFields": ["productCode","productName", "category", "productUOM", "averageUnitPrice", "Cost", "Profit", "Margin", "action"],
+    "displayedColumnFilters" : ["productCodeFilter","productNameFilter", "categoryFilter", "productUOMFilter", "defaultSalePriceFilter", "costFilter", "ProfitFilter", "MarginFilter", "actionFilter"]
+    }

@@ -1,0 +1,5 @@
+{
+    "tableHeaders": [	"ID",	"Material name",	"Category",	"UOM", 	"Default supplier","Unit price","Purchase price", "Reorder point", "Action" ],
+    "tableFields": ["productCode","productName", "category", "productUOM", "vendor","averageUnitPrice","DefaultPurchasePrice", "reOrderPoint", "action"],
+    "displayedColumnFilters": ["productCodeFilter","productNameFilter", "categoryFilter", "productUOMFilter", "vendorFilter","averageUnitPriceFilter","DefaultPurchasePriceFilter", "ReorderPointFilter","actionFilter"]
+    }

@@ -1,0 +1,5 @@
+{
+"tableHeaders": [ "Name", "Contact",
+    "Phone", "Email","GST", "Address", "Action"],
+"tableFields": [ "companyName", "contactName", "phoneNumber", "emailId", "gstNo", "address", "action"]
+}

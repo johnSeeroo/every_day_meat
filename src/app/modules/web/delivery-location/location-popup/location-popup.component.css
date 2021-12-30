@@ -1,0 +1,36 @@
+.text_location{
+    color: black !important;
+    text-align: center !important;
+}
+.text_box{
+    text-align: center !important;
+    width: 80% !important;
+    padding-left: 20%!important;
+    padding-top: 5%!important;
+
+}
+.continue_button{
+    height:60%!important;
+}
+.button_padding{
+    padding-top: 5%!important;
+    text-align: center !important;
+}
+.ml-4{
+    margin-left: 28rem!important;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+.give_space{
+    padding-left: 33%!important;
+    color:#C00!important;
+}

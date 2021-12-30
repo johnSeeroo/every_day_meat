@@ -1,0 +1,5 @@
+{
+    "tableHeaders": [	"Create date",	"Order #",	"Customer",	"Total amount", "Delivery deadline", "Status"],
+    "tableFields": ["createdDate","orderNo", "customer", "totalAmount", "deliveryDate", "ststus"],
+    "displayedColumnFilters" : ["createdDateFilter","orderNoFilter", "customerFilter", "totalAmountFilter", "deliveryDateFilter", "statusFilter"]
+    }

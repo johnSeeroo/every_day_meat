@@ -1,0 +1,14 @@
+<nav>
+  <ol class="breadcrumb">
+    <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+      <li class="breadcrumb-item" *ngIf="!last">
+        <a href="javascript:void(0)" (click)="gotoUrl(breadcrumb)">{{
+          breadcrumb.label
+        }}</a>
+      </li>
+      <li class="breadcrumb-item active" *ngIf="last">
+        {{ breadcrumb.label }}
+      </li>
+    </ng-container>
+  </ol>
+</nav>

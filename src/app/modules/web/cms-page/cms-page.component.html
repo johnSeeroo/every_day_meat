@@ -1,0 +1,74 @@
+<main role="main" class="content_area">
+  <section class="f404" *ngIf="slugTitle == 'About Us'">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-10 text-left">
+          <h3 class="sub_title mb-3">{{slugTitle}}</h3>
+          <div class="terms_box">
+            <p [innerHTML]="slugData"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="slugTitle == 'Contact Details'"> 
+    <div class="modal-lg modal-dialog">
+      <div class="form-row">
+        <div class="col-6">
+          <label class="form-label">Name</label>
+          <input type="text" [(ngModel)]="slugData.name" class="form-control">
+        </div>
+        <div class="col-6">
+          <label class="form-label">Email</label>
+          <input type="text" [(ngModel)]="slugData.email" class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+
+        <div class="col-6">
+          <label class="form-label">Street</label>
+          <input type="text" [(ngModel)]="slugData.street" class="form-control">
+        </div>
+        <div class="col-6">
+          <label class="form-label">Street 2</label>
+          <input type="text" [(ngModel)]="slugData.street2" class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-6">
+          <label class="form-label">City</label>
+          <input type="text" [(ngModel)]="slugData.city" class="form-control">
+        </div>
+        <div class="col-6">
+          <label class="form-label">Pincode</label>
+          <input type="text" [(ngModel)]="slugData.pincode" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <div class="col-6">
+          <label class="form-label">Web site</label>
+          <input type="text" [(ngModel)]="slugData.website" class="form-control">
+        </div>
+        <div class="col-6">
+          <label class="form-label">Mobile number</label>
+          <input type="text" [(ngModel)]="slugData.phone" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-row">
+
+        <div class="col-6">
+          <label class="form-label">State</label>
+          <input type="text" [(ngModel)]="slugData.state" class="form-control">
+        </div>
+        <div class="col-6">
+          <label class="form-label">Country</label>
+          <input type="text" [(ngModel)]="slugData.country" class="form-control">
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>

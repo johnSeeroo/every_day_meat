@@ -1,0 +1,26 @@
+<div>
+<form [formGroup]="locationFormGroup">
+  <h3 class="text_location">Choose your Delivery Location</h3>
+  <h5 class="text_location">Where would you like to get the product delivered?</h5>      
+  <div class="text_box">
+  </div>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Pincode</mat-label>
+    <input type="text"
+           placeholder="Enter Area name or Pincode"
+           aria-label="Number"
+           matInput
+           (keyup)="checkAvailability()"
+           [formControl]="pincodeControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
+      <mat-option *ngFor="let option of pincodeListFilter | async" [value]="option" (click)="setSelectedLocation(option)">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div *ngIf="isrequestDeliveryLocation">No search results 
+    <span class="error_signup give_space"><a href="Javascript:void(0);" (click)="requestDeliveryLocation()">Request delivery location?</a></span>
+  </div>
+</form>
+</div>

@@ -1,0 +1,5 @@
+{
+    "tableHeaders": ["Customer",  "Unit Sale Price",
+        "Discount Percent", "CGST", "SGST", "IGST"],
+    "tableFields": ["customer",  "unitSalePrice", "discountPercent", "cgstPercent", "sgstPercent", "igstPercent"]
+    }

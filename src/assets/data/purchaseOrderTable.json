@@ -1,0 +1,23 @@
+{
+  "tableHeaders": [
+    "Order #",
+    "Supplier Name",
+    "Total Amount",
+    "expected arrival",
+    "Delivery"
+  ],
+  "tableFields": [
+    "purchaseOrderName",
+    "vendor",
+    "poAmountWithTax",
+    "expectedDate",
+    "purchaseOrderStatus"
+  ],
+  "displayedColumnFilters": [
+    "purchaseOrderNameFilter",
+    "vendorFilter",
+    "expectedDateFilter",
+    "purchaseOrderAmountFilter",
+    "purchaseOrderStatusFilter"
+  ]
+}

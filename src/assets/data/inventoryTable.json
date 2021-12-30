@@ -1,0 +1,5 @@
+{
+    "tableHeaders":["Name","Category","Average cost","Value in stock","In stock","Expected", "Commited","Re-order point","Missing excess", "Action"],
+    "tableFields":["product","category","averageCost","valueInStock","inStock","expected","committed","reorderPoint","missing", "action"],
+    "displayedColumnFilters" : ["nameFilter","categoryFilter","averageCostFilter","valueInStockFilter","inStockFilter","expectedFilter","committedFilter","reorderPointFilter","missingExcessFilter", "actionFilter"]
+}

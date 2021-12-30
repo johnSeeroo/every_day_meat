@@ -1,0 +1,78 @@
+
+/*.loading {
+	background: url(../images/load.gif)  no-repeat center center;
+	
+}*/
+section {
+	min-width: 960px;
+	opacity: 0;
+}
+.loaded section,
+.no-js section {
+	opacity: 1;
+	-webkit-transition: opacity 300ms ease-out;
+	-moz-transition: opacity 300ms ease-out;
+	transition: opacity 300ms ease-out;
+}
+main {
+	overflow-x: hidden;
+}
+#preload {
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.bcg {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+}
+
+
+/* Slide 1 */
+#slide-1 .bcg {/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#c9268f+0,91226d+52,86245f+100 */
+background: #c9268f; /* Old browsers */
+background: -moz-linear-gradient(top, #c9268f 0%, #91226d 52%, #86245f 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #c9268f 0%,#91226d 52%,#86245f 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #c9268f 0%,#91226d 52%,#86245f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9268f', endColorstr='#86245f',GradientType=0 ); /* IE6-9 */}
+#slide-1 .hsContent {
+	bottom: 200px;
+	top: auto;
+}
+
+/* Slide 2 */
+#slide-2 .bcg {background: url(../images/service_bg.jpg) #ffcc00; background-repeat:no-repeat;}
+#slide-2 .hsContent {
+	/*margin-left: -450px;
+	bottom: 200px;*/
+	top: auto;
+}
+
+/* Slide 3 */
+#slide-3 .bcg {background:url(../images/blog_bg.jpg) #201f24; background-repeat:no-repeat; background-position:right bottom;}
+#slide-3 .hsContent {
+	/*margin-left: -239px;*/
+}
+	#slide-3 h2 {
+		color: #fff;
+	
+	}
+
+/* Slide 4 */
+#slide-4 .bcg {background:url(../images/career.jpg) #04a092;background-repeat:no-repeat;background-position:center top; }
+#slide-4 .hsContent {
+	/*margin-left: -450px;*/
+}
+	#slide-4 h2 {
+		background: none;
+		padding-left: 0;
+		padding-right: 0;
+	}
+

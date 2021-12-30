@@ -1,0 +1,5 @@
+{
+    "tableHeaders": [ "Product", "Quantity",
+         "PO Item Amount", "CGST", "SGST", "IGST", "Discount Applicable", "Total PO Item Amount", "Item Status", "Lead Time"],
+    "tableFields": [ "product", "quantity",  "itemAmount", "cgstAmount", "sgstAmount", "igstAmount", "discountAmount", "totalItemAmount", "itemStatus", "scheduleDate"]
+    }

@@ -1,0 +1,93 @@
+<main role="main" class="content_area">
+    <section class="account_page">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="sub_title">Review Product</h3>
+          </div>
+        </div>
+        <div class="row">
+          <!-- <div class="col-md-5 col-lg-3">
+            <ul class="myAccount_list">
+              <li>
+                <h6>Janne Doe</h6>
+              </li>
+              <li><a href="#">profile</a></li>
+              <li><a href="#">my rewards</a></li>
+              <li><a href="#">my orders</a></li>
+              <li><a href="#">my address</a></li>
+              <li class="active"><a href="#">my Reviews</a></li>
+              <li><a href="#">my wallet</a></li>
+              <li><a href="#">my notifications</a></li>
+              <li><a href="index.html">Logout</a></li>
+            </ul>
+          </div> -->
+          <div class="col-md-12 col-lg-12 pl-12">
+            <!-- <div class="right_box_head">
+              <h3 class="sub_title">My Product  Reviews</h3>
+            </div> -->
+            <div class="row">
+              <div class="col-12 col-lg-4 col-xl-3">
+                <div class="promotion_thumb prod_review_image"> <img src="assets/images/detail/2.jpg" class="w-100">
+                  <div class="caption">
+                    <h4>Liamond Calo Stud Farrings</h4>
+                    <h6>AED 30</h6>                  
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-8 col-xl-9">
+                <form>
+                  <div class="form-group row mb-4">
+                    <label class="col-sm-12 col-lg-3 col-form-label review_label pt-0 pb-0">Rating</label>
+                    <!-- <div class="col-sm-12 col-lg-9"> <img src="assets/images/5star.jpg"><span class="yellow_text">Very Satisfied</span> </div> -->
+                    <div class="mx-auto">
+                        <mat-radio-group aria-label="Select an option"  class="rating">
+                          <input type="radio" value="5" id="5" [checked] = "ratingVal == 5 ? true : false">
+                          <label for="5" (click)=ratingValue(5)>☆</label>
+                          <input type="radio" value="4" id="4" [checked] = "ratingVal == 4 ? true : false">
+                          <label for="4" (click)=ratingValue(4)>☆</label>
+                          <input type="radio" value="3" id="3" [checked] = "ratingVal == 3 ? true : false">
+                          <label for="3" (click)=ratingValue(3)>☆</label>
+                          <input type="radio" value="2" id="2" [checked] = "ratingVal == 2 ? true : false">
+                          <label for="2" (click)=ratingValue(2)>☆</label>
+                          <input type="radio" value="1" id="1" [checked] = "ratingVal == 1 ? true : false">
+                          <label for="1" (click)=ratingValue(1)>☆</label>
+                        </mat-radio-group>
+                      </div>
+
+
+
+
+                  </div>
+                  <div class="form-group row mb-4">
+                    <label class="col-sm-12 col-lg-3 col-form-label review_label pt-0 pb-0">Overall Fit <span class="red_star">*</span></label>
+                    <div class="col-sm-12 col-lg-6">
+                      <div class="overall_select">
+                        <input id="true_size" type="radio" name="user" value="True to Size">
+                        <label for="true_size"><span></span>True to Size</label>
+                        <input id="Large" type="radio" name="user" value="Large">
+                        <label for="Large"><span></span>Large</label>
+                        <input id="Small" type="radio" name="user" value="Small">
+                        <label for="Small"><span></span>Small</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row mb-4">
+                    <label class="col-sm-12 col-lg-3 col-form-label review_label pt-0 pb-0">Content <span class="red_star">*</span></label>
+                    <div class="col-sm-12 col-lg-6">
+                      <textarea class="form-control textarea_content" placeholder="Write a Review"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row mb-4">
+                    <div class="col-sm-12 col-lg-6 offset-lg-3">
+                      <button class="add_button"><span>submit</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

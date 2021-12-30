@@ -1,0 +1,131 @@
+<main role="main" class="content_area">
+    <div class="breadcrumb_block">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><span>Cart</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section *ngIf="cartProducts.length != '0'" class="cart_page">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 cart_listing">
+            <div class="cart_head d-flex align-items-center"> <a [routerLink]="['']"><span></span>Back to Shopping</a>
+              <h3 class="subhead">Your Cart <span>({{cartProducts.length}} item(s))</span></h3>
+              <div class="clearfix"></div>
+            </div>
+            <div class="table-responsive ">
+              <table class="table cart_list responsive_table order_body p-0">
+                <thead>
+                  <tr>
+                    <!-- <th><input type="checkbox" class="check_cart"></th> -->
+                    <th scope="col">{{cartProducts.length}} item(s)</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of cartProducts;let i = index">
+                    <!-- <td><input type="checkbox" class="check_cart"></td> -->
+                    <td data-label=""><div class="media align-items-center">
+                        <div class="order_item-image"> <img src="{{product.image_url}}"> </div>
+                        <div class="media-body order-item_text">
+                          <h5>{{product.en_lang}}</h5>
+                          <ul>
+                            <li><span>Sold by: </span>EveryDayMeat</li>
+                          </ul>
+                        </div>
+                      </div></td>
+                    <td data-label="Amount" class="amount_cart"><span>INR</span> {{product.price}} </td>
+                    <td >
+                        <a (click)="updateProduct(product,-1,product.product_uom_qty)"><span class="material-icons">
+                            remove
+                            </span></a>
+                            <input disabled type="text" class="input_text_sizing" [(ngModel)]="product.product_uom_qty" disabled>
+                            <a (click)="updateProduct(product,1,product.product_uom_qty)"><span class="material-icons">
+                                add
+                                </span></a>
+                          
+                    </td>
+                    <td data-label=""><button (click)="removeItem(product)" class="remove_row"></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="summary_cart">
+              <h4>Summary</h4>
+              <ul>
+                <li><span class="mr-auto">Sub Total</span>INR {{cartData.amount_total}}</li>
+                <li><span class="mr-auto">Coupon Amount </span>INR {{cartData.coupon_amount}}</li>
+                <li><span class="mr-auto">Delivery Charge </span>INR {{cartData.free_delivery_cost}}</li>
+                <li class="total_smmary">
+                  <h4 class="mr-auto">Total Amount</h4>
+                  <span>INR</span> {{cartData.grand_total}}</li>
+              </ul>
+              <button [routerLink]="['/web/checkout']" class="add_button">Checkout</button>
+            </div>
+          </div>
+        </div>
+        <div class="seperater"></div>
+        <!-- <div class="row">
+          <div class="col-md-12 mt-4">
+            <div class="carousel_title d-flex align-items-center">
+              <h3 class="mr-auto">Similar Products</h3>
+              <a href="#" class="viewAll_link">View All </a> </div>
+            <div class="owl-carousel related_carousel">
+              <div class="item">
+                <div class="sellers_thumb"> <img src="assets/images/best_seller/1.jpg" alt="" class="mw-100">
+                  <h3>Banana Nendra Ship</h3>
+                  <h4>AED  8.75/Kg</h4>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex pr-3 align-items-center">
+                      <label class="mb-0">Qty</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <button class="add_button ml-auto">ADD</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+    <section *ngIf="cartProducts.length == '0'" class="cart_page">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 cart_listing">
+              <div class="cart_head d-flex align-items-center"> <a [routerLink]="['']"><span></span>Back to Shopping</a>
+                <div class="clearfix"></div>
+              </div>
+              <div class="table-responsive ">
+                <table class="table cart_list responsive_table order_body p-0">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td data-label=""><div class="media align-items-center">
+                          <div class="media-body order-item_text">
+                            <h5>No content to display</h5>
+                          </div>
+                        </div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>

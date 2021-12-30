@@ -1,0 +1,5 @@
+{
+    "tableHeaders":["Commitments","Customer","Quantity","Deadline","Status","Expected from"],
+    "tableFields":["commitments","customer","quantity","deadline","status","expectedFrom"],
+    "displayedColumnFilters" : ["commitmentsFilter","customerFilter","quantityFilter","deadlineFilter","statusFilter","expectedFromFilter"]
+}

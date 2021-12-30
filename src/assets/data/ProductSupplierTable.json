@@ -1,0 +1,6 @@
+{
+    "tableHeaders": ["Supplier", "Minimum Order Quantity", "Unit Purchase Price",
+        "Discount Percent", "CGST", "SGST", "IGST", "Avergae delivery time"],
+    "tableFields": ["vendor", "moq", "unitPurchasePrice", "discountPercent", "cgstPercent", "sgstPercent", "igstPercent",
+    "scheduleDays"]
+    }

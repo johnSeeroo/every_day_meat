@@ -1,0 +1,114 @@
+<main role="main" class="content_area">
+  <div class="breadcrumb_block">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><span>{{productDetails.en_lang}}</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="detail_page">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="item"><img src="{{productDetails.image_url}}" alt="" class="w-100 zoom"></div>
+        </div>
+        <div class="col-md-7 detail_rightBox">
+          <h2 class="sub_title">{{productDetails.en_lang}}</h2>
+          <h4>{{productDetails.pieces}} Pieces</h4>
+          <div class="star-rating"> <span style="width: 50%;"> </span> </div>
+          <div class="available_product d-flex align-items-center">
+            <div class="available_name control-label"> Available: </div>
+            <span class="product__available in-stock">
+              <span *ngIf="!(productDetails.out_of_stock)">In stock</span>
+              <span *ngIf="productDetails.out_of_stock">Not Available</span>
+            </span>
+          </div>
+          <div class="available_product d-flex align-items-center">
+            <div class="available_name control-label"> Cut size: </div>
+            <span class="product__available in-stock"> <span>{{productDetails.cut_size_details}}</span></span>
+          </div>
+          <div class="available_product d-flex align-items-center">
+            <div class="available_name control-label"> Gross weight: </div>
+            <span class="product__available in-stock"> <span>{{productDetails.gross_weight}}</span></span>
+          </div>
+          <div class="available_product d-flex align-items-center">
+            <div class="available_name control-label"> SKU: </div>
+            <span class="product__available in-stock"> <span>123456</span></span>
+          </div>
+          <div class="group-single__sku has-border">
+
+            <p itemprop="cat" class="product-single__cat"><span class="label control-label">Category:</span> <a
+                href="#">{{productDetails.categ_name}}</a>, </p>
+          </div>
+          <div class="product_price align-items-center">
+            <div class="price_left mr-auto">
+              <h3><span>INR</span> {{productDetails.price}}</h3>
+              <span>( Per {{productDetails.unit}} )</span>
+            </div>
+          </div>
+          <div class="qty_section d-flex">
+            <div class="quantity">
+              <form [formGroup]="quantityForm" >
+              <input type="number" formControlName="quantity">
+            </form>
+              <div class="clearfix"></div>
+            </div>
+            
+            <div *ngIf="productDetails.out_of_stock" class="addto_cart"><a (click)="notifyOnAvailability()" class="add_button  mt-0"><span>Notify</span></a></div>
+            
+            <div *ngIf="!(productDetails.out_of_stock)" class="addto_cart"><a (click)="addProductToCart()" class="add_button  mt-0"><span>Add To Cart</span></a></div>
+          </div>
+          <div id="detail_accordion" class="mt-5 mb-4">
+            <div class="card">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">Description<span></span></button>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#detail_accordion">
+                <div class="card-body">
+                  <p>{{productDetails.description}}.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="seperater"></div>
+      <div class="row">
+        <div class="col-12">
+          <h2 class="sub_title">Related Products</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <owl-carousel-o [options]="relatedProductOptions">
+            <ng-container *ngFor="let item of relatedProducts">
+              <ng-template carouselSlide>
+
+                <div class="item">
+                  <div class="sellers_thumb">
+                    <a> <img src="assets/images/best_seller/1.jpg" alt="" class="mw-100">
+                    <h3>{{item.en_lang}}</h3>
+                    <h4>INR {{item.price}}/{{item.unit}}</h4>
+                    <div class="d-flex align-items-center">
+                      <div class="d-flex pr-3 align-items-center">
+                        <label class="mb-0">Qty</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <button class="add_button ml-auto">ADD</button>
+                    </div></a>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+      </div>
+      </div>
+  </section>
+</main>

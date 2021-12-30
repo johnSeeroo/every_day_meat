@@ -1,0 +1,32 @@
+{
+  "tableHeaders": [
+    "Order #",
+    "Customer",
+    "Total Amount with tax",
+    "Delivery deadline",
+    "Sales Items",
+ 
+    "Production",
+    "Delivery"
+  ],
+  "tableFields": [
+    "workOrderCode",
+    "customer",
+    "workOrderAmountWithTax",
+    "scheduleDate",
+    "salesItem",
+   
+    "moStatus",
+    "status"
+  ],
+  "displayedColumnFilters": [
+    "orderNumberFilter",
+    "customerFilter",
+    "totalAmountFilter",
+    "taxFilter",
+    "costOfGoodsFilter",
+    
+    "pickedDateFilter",
+    "deliveryFilter"
+  ]
+}

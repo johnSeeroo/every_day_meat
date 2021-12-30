@@ -1,0 +1,5 @@
+{
+    "headers":["Make/Buy",	"Variant type",	"Variant code",	"Product variant",	"Default sales price",	"Default supplier", "Reorder point"
+    ],
+    "fields": ["make", "variantType", "variantCode", "ProductVariant", "defaultSalesPrice", "vendor", "reorderPoint"]
+}

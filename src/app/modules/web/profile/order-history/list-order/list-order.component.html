@@ -1,0 +1,91 @@
+<main role="main" class="content_area">
+  <div class="breadcrumb_block">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><span>Cart</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 class="text_align_center">Your Orders </h2>
+  <section *ngIf="orderList.length != '0'" class="cart_page">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 cart_listing">
+            <div class="clearfix"></div>
+          <div class="table-responsive ">
+            <table class="table cart_list responsive_table order_body p-0">
+              <thead>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of orderList;let i = index">
+                  <a (click)="orderDetailPage(product)">
+                  <td data-label=""><div class="media align-items-center">
+                      <div class="order_item-image"> <img src="{{product.image_url_list[0]}}"> </div>
+                      <div class="media-body order-item_text">
+                        <h5>{{product.name}}</h5>
+                        <ul>
+                          <li><span>Order Id: </span>{{product.order_id}}</li>
+                          <li><span>Order Status: </span>{{product.status}}</li>
+                        </ul>
+                      </div>
+                    </div></td>
+                  <td data-label="Amount" class="amount_cart">Amount: <span>INR</span> {{product.grand_total}} </td>
+                  </a>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="orderList.length == '0'" class="cart_page">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 cart_listing">
+            <div class="table-responsive ">
+              <table class="table cart_list responsive_table order_body p-0">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label=""><div class="media align-items-center">
+                        <div class="media-body order-item_text">
+                          <h5>No content to display</h5>
+                        </div>
+                      </div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="col-md-12" *ngIf="orderList.length > 0 && totalPages != '0'">
+        <nav aria-label="Page navigation" class="float-right">
+          <ul class="pagination">
+            <li class="page-item"> <a class="page-link" (click)="previousPageSelect()" aria-label="Previous"> <span
+                  aria-hidden="previousShow">&laquo;</span> <span class="sr-only">Previous</span> </a> </li>
+            <ng-container *ngFor="let number of numberpages">
+              <li class="page-item" id="pages{{number}}"><a class="page-link"
+                  (click)="pageselect(number)">{{number}}</a></li>
+            </ng-container>
+            <li class="page-item"> <a class="page-link" (click)="nextPageSelect()" aria-label="Next"> <span
+                  aria-hidden="nextShow">&raquo;</span> <span class="sr-only">Next</span> </a> </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+</main>

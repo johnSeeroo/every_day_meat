@@ -1,0 +1,71 @@
+<main role="main" class="content_area">
+    <div class="breadcrumb_block">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><span>Profile</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="cart_page address_select">
+      <div class="container">
+        <div class="row align_center">
+          <div class="col-12">
+            <h3 class="sub_title mb-3">Profile</h3>
+          </div>
+        </div>
+         <div class="row width_set">
+          <div class="col-md-12 col-lg-12 pl-12">            
+            <form [formGroup]="profileForm" class="register_form profile_form" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="col-12">
+                      <label class="form-label">Name</label>
+                      <input type="text" class="form-control" formControlName="userName" placeholder="name">
+                    </div>
+                    <div *ngIf="issubmitted && profileForm.controls.userName.errors" class="error_signup"> 
+                        <small *ngIf="issubmitted && profileForm.controls.userName.errors.required"> Name is required. </small>
+                      </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12">
+                      <label class="form-label">Email</label>
+                      <input type="text" class="form-control" formControlName="email" placeholder="email">
+                    </div>
+                    <div *ngIf="issubmitted && profileForm.controls.email.errors" class="error_signup"> 
+                        <small *ngIf="issubmitted && profileForm.controls.email.errors.required"> Email is required. </small>
+                      </div>
+                </div>
+              <div class="form-row">
+                <div class="col-12">
+                  <label class="form-label">Mobile number</label>
+                  <input type="text" class="form-control" formControlName="phone" placeholder="mobile" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12" disabled>
+                </div>
+                <div *ngIf="issubmitted  && profileForm.get('phone').invalid ">
+                    <small *ngIf="profileForm.get('phone').errors?.required" class="error_signup">Phone
+                      number is required</small>
+                    <small
+                      *ngIf="profileForm.get('phone').errors?.minLength"
+                      class="error_signup">Phone number should be between 8-12 numbers</small>
+  
+                    <small
+                      *ngIf="!profileForm.get('phone').errors?.required && profileForm.get('phone').errors.invalidNumber"
+                      class="error_signup">Invalid
+                      Phone Number</small>
+                  </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 text-right mt-3">
+                  <button type="submit" class="add_button">Submit</button>
+                </div>
+              </div>
+            </form>
+         
+         </div>
+        </div>
+      </div>
+    </section>
+  </main>

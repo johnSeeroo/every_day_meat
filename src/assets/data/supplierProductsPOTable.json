@@ -1,0 +1,5 @@
+{
+    "tableHeaders": [ "Product", "Quantity",
+        "PhoneUnit Purchase Price", "PO Item Amount","GST", "Discount Applicable", "Action"],
+    "tableFields": [ "companyName", "contactName", "phoneNumber", "emailId", "gstNo", "address", "action"]
+    }

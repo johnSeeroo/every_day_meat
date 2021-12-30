@@ -1,0 +1,87 @@
+<header id="myHeader" class="header_inner header_main">
+  <div class="header_top_area">
+    <div class="container-fluid h-100">
+      <div class="row align-items-center h-100">
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="text-center">Free same day delivery, for orders before 1 PM | Minimum Order: AED 49/-</div>
+          <!-- <div class="language_select">
+            <div class="selectt">
+              <select>
+                <option value="1">English</option>
+                <option value="2">Arabic</option>
+              </select>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header_middle_box">
+    <div class="container-fluid clearfix">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-3 col-6 pl-5">
+          <div id="logo"> <a href="index.html"><img src="assets/images/logo.png" alt="Ibell"/> </a> </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-2 mobile_hide">
+          <div class="head_search_">
+            <button type="button" class="search_button" (click)="productSearch()"></button>
+            <input type="text" class="form-control" placeholder="Search Here..." [formControl]="formProductSearch">
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-6 pr-0">
+          <div class="d-flex justify-content-end bd-highlight trade_cart_area">
+            <div class=" mid_head_links"> 
+              <ng-container *ngIf="user_id == ''">
+                <a [routerLink]="['/web/sign-in']" class="sign_in" data-toggle="modal"> Sign in / Sign up</a>
+              </ng-container>
+              <ng-container *ngIf="user_id != ''">
+                <!-- <a (click)="logout()" class="sign_in" data-toggle="modal"> Log out</a> -->
+                <div class="ml-2 mr-2 profile_name text-truncate">
+  
+                  <button mat-button [matMenuTriggerFor]="userProfile">My Account</button>
+                  <mat-menu #userProfile="matMenu">
+                    <button mat-menu-item [routerLink]="['/web/profile/view']">Profile</button>
+                    <button  mat-menu-item [routerLink]="['/web/profile/orders/list']">Orders</button>
+                    <button  mat-menu-item  [routerLink]="['/web/profile/address']">Delivery Address</button>
+                    <button mat-menu-item (click)="logout()" >Logout</button>
+                  </mat-menu>
+                </div>
+              </ng-container>
+                
+               <a (click)="locationPopUp()" class="location_select">
+                <ng-container *ngIf="deliveryLocation != ''">{{deliveryLocation}}
+                </ng-container>
+                <ng-container *ngIf="deliveryLocation == ''">Select location
+                </ng-container>
+                </a>
+            </div>
+            <div class="cart_top">
+              <div class="dropdown">
+                <div class="cart_box"> 
+                  <a class="dropdown-toggle" [routerLink]="['/web/cart']" role="button" id="dropdownMenuLink"><span class="cart_ico"></span><span>Cart</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="menu_area">
+    <div class="container-fluid clearfix">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12 pl-0">
+          <div class="d-flex"> <a href="#" class="shop_menu_title"> Shop by Category </a>
+            <div id="cssmenu">
+              <ul class="mainMenu">
+                <ng-container >
+                <li *ngFor="let category of categoryList"><a (click)="getItemByCategory(category)">{{category.en_lang}}</a></li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

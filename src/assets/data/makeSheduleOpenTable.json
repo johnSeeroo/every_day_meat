@@ -1,0 +1,38 @@
+{
+  "tableHeaders": [
+    "Order #",
+    "Customer",
+    "Product",
+    "MO.Type",
+    "Quantity",
+    "Planned Time",
+    "Prod.deadline",
+    "Del.deadline",
+    "Ingredients",
+    "Production"
+  ],
+  "tableFields": [
+    "moCode",
+    "workOrder",
+    "product",
+    "type",
+    "plannedQuantity",
+    "plannedTime",
+    "completionDate",
+    "deliveryDate",
+    "availability",
+    "status"
+  ],
+  "displayedColumnFilters": [
+    "orderFilter",
+    "customerFilter",
+    "productFilter",
+    "typeFilter",
+    "qtyFilter",
+    "plannedTimeFilter",
+    "prodDeadLineFilter",
+    "delDeadLine",
+    "ingredientsFilter",
+    "productionFilter"
+  ]
+}

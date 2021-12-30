@@ -1,0 +1,351 @@
+<main role="main" class="content_area">
+  <div class="breadcrumb_block">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><span>Checkout</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="cart_page address_select">
+    <form [formGroup]="checkOutForm">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3 class="sub_title mb-3">Checkout</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 cart_listing">
+          <div class="row">
+            <div class="col-12">
+              <div class="accordion" id="checkout">
+                <div class="card">
+                  <div class="card-header" id="checkouthead1"> <a href="#" class="btn btn-header-link"
+                      data-toggle="collapse" data-target="#checkout1" aria-expanded="true"
+                      aria-controls="checkout1"><span>1</span>Confirm Address</a> </div>
+                  <div id="checkout1" class="collapse show" aria-labelledby="checkouthead1" data-parent="#checkout">
+                    <div class="card-body">
+                      <div class="cart_head">
+                        <h3 class="sub_title">Delivery Address</h3>
+                      </div>
+                      
+                      <div class="row customRow_7 mt-3">
+                        <div class="col-md-10">
+                          <address>
+                            <ng-container *ngIf="addressData != undefined">
+                            <h3>{{addressData.name}}</h3>
+                            <ul>
+                              <li><span>Building name: </span>{{addressData.building_name}}</li>
+                              <li><span>Flat number: </span>{{addressData.flat_no}}</li>
+                              <li><span>Street: </span>{{addressData.street}}</li>
+                              <li><span>Street 2: </span>{{addressData.street2}}</li>
+                              <li><span>City: </span>{{addressData.city}}</li>
+                              <li *ngIf="addressData.zip != ''"><span>Zip code: </span>{{addressData.zip}}</li>
+                              <li *ngIf="addressData.pin_code != ''"><span>Pin code: </span>{{addressData.pin_code}}
+                              </li>
+                              <li><span>Phone: </span>{{addressData.phone}}</li>
+                              <li><span>Mobile number: </span>{{addressData.mobile1}}</li>
+                            </ul>
+                          </ng-container>
+                          <ng-container *ngIf="addressData == undefined">
+                            <h3>No address found</h3>
+                            <ul>
+                              <li><span>Building name: </span></li>
+                              <li><span>Flat number: </span></li>
+                              <li><span>Street: </span></li>
+                              <li><span>Street 2: </span></li>
+                              <li><span>City: </span></li>
+                              <li ><span>Zip code/Pin code: </span></li>
+                              <li><span>Phone: </span></li>
+                              <li><span>Mobile number: </span></li>
+                            </ul>
+                          </ng-container>
+                            <div class="edit_delete_"> <a [routerLink]="['/web/profile/address']" class="btn">Edit</a>
+                            </div>
+                          
+                          </address>
+                        </div>
+                      </div>
+                      <!--  <div class="seperater"></div>
+                        <h3 class="sub_title">Add a New Address</h3>
+                         <form class="register_form profile_form mt-0">
+                          <h4>Personal Information</h4>
+                          <div class="form-row">
+                            <div class="col-6">
+                              <label class="form-label">Name</label>
+                              <input type="text" class="form-control" value="Jane Doe">
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label">Mobile</label>
+                              <div class="row customRow_7">
+                                <div class="col-3">
+                                  <input type="text" class="form-control" value="+971">
+                                </div>
+                                <div class="col-9">
+                                  <input type="text" class="form-control" value="1234567890">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <h4>Address Information</h4>
+                          <div class="form-row">
+                            <div class="col-6">
+                              <label class="form-label">City</label>
+                              <input type="text" class="form-control" value="">
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label">Area</label>
+                              <input type="text" class="form-control" value="">
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-6">
+                              <label class="form-label">Address <em class="">(only numbers, alphabet, comma and period are allowed)</em></label>
+                              <input type="text" class="form-control" value="">
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label">Landmark (optional) <em class="">(only numbers, alphabet, comma and period are allowed)</em></label>
+                              <input type="text" class="form-control" value="">
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="col-12 mt-3">
+                              <button class="add_button">Save &amp; Continue</button>
+                            </div>
+                          </div>
+                        </form> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="checkouthead2"> <a href="#" class="btn btn-header-link collapsed"
+                      data-toggle="collapse" data-target="#checkout2" aria-expanded="true"
+                      aria-controls="checkout2"><span>2</span>Shipments</a> </div>
+                  <div id="checkout2" class="collapse" aria-labelledby="checkouthead2" data-parent="#checkout">
+                    <div class="card-body">
+                      <!-- <div class="row">
+                        <div class="col-md-6">
+                          <div class=" shipments_media">
+                            <h5>Shipment 1 <span>(4 Items)</span></h5>
+                            <h6>FREE DELIVERY</h6>
+                            <img src="assets/images/detail/1.jpg" alt="">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <h3 class="delivery_timeText">Delivery Today, 19 August,8 pm - 10 pm</h3>
+                        </div>
+                      </div> -->
+                      <div class="">
+                        <h4>Select Your Delivery Date</h4>
+                        <div class="row customRow_7">
+                          <div class="col-6 col-sm-4">
+                            <div class="DeliveryDate">
+                              <input id="today" (click)="selectTimeSlot('today')" name="DeliveryDate" type="radio">
+                              <label for="today" class="radio-label"><span>Today</span></label>
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-4">
+                            <div class="DeliveryDate">
+                              <input id="tomorrow" (click)="selectTimeSlot('tomorrow')" name="DeliveryDate" type="radio">
+                              <label for="tomorrow" class="radio-label"><span>Tomorrow</span></label>
+                            </div>
+                          </div>
+                        </div>
+                        <h4>Select a Time Slot </h4>
+                        <ng-container *ngIf="timeSlot.length != '0'">
+                        <div class="row customRow_7">
+                            <ng-container *ngFor="let slot of timeSlot">
+                          <div class="col-6 col-sm-4">
+                            <div>
+                              <input id="selectedTimeSlot" name="selectedTimeSlot" type="radio" formControlName="selectedTimeSlot" value = "{{slot.id}}" [disabled]="slot.is_disabled">
+                              <label for="time1" class="radio-label"><span>{{slot.name}}</span></label>
+                            </div>
+                          </div>
+                        </ng-container>
+                          <!-- <div class="col-6 col-sm-4">
+                            <div class="DeliveryDate time_slot">
+                              <input id="time2" name="DeliveryTime" type="radio" checked>
+                              <label for="time2" class="radio-label"><span>8AM - 10AM</span></label>
+                            </div>
+                          </div>-->
+                          
+
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="timeSlot.length == '0' && timeSlotSelected">
+                        <div class="row customRow_7">
+                           No time slots available
+                          
+                        </div>
+                      </ng-container>
+                        <!-- <div class="row">
+                          <div class="comment col-12">
+                            <div class="form-group">
+                              <label for="comments">Comments</label>
+                              <textarea class="form-control" id="comments"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="form-row">
+                              <div class="col-12 mt-3">
+                                <button class="add_button">Save &amp; Continue</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="checkouthead3"> <a href="#" class="btn btn-header-link collapsed"
+                      data-toggle="collapse" data-target="#checkout3" aria-expanded="true"
+                      aria-controls="checkout3"><span>3</span>Payment Method</a> </div>
+                      <ng-container *ngIf="paymentMethod.length != '0'">
+                  <div id="checkout3" class="collapse" aria-labelledby="checkouthead3" data-parent="#checkout">
+                    <div class="card-body">
+                      <div class="paymentDashboard">
+                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                        formControlName="selectedPayment">
+                          <mat-radio-button class="example-radio-button" *ngFor="let method of paymentMethod"
+                            [value]="method.id" >
+                            <!-- [disabled]="!method.is_active" -->
+                            
+                            {{method.name}}
+                          </mat-radio-button>
+                        </mat-radio-group>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="summary_cart">
+            <div class="coupon_box">
+              <div class="coupon_box_inner">
+                <div class="Coupon__couponIcon"> <img src="assets/images/coupon.svg" class=""> </div>
+                <div class="Coupon__headingText">Check for Coupon</div>
+                <div class="Coupon__apply"><a href="#" class="cancel_order_link mt-0" data-toggle="modal"
+                    data-target="#Coupon_code" (click)="viewOffers()">Apply</a></div>
+              </div>
+            </div>
+
+            <ng-container *ngIf="cartData != undefined">
+            <h4>Summary</h4>
+            <ul>
+              <li><span class="mr-auto">Sub Total</span>INR {{cartData.amount_total}}</li>
+              <li><span class="mr-auto">Delivery Charge </span>INR {{cartData.free_delivery_cost}}</li>
+              <li><span class="mr-auto">Coupon Discount </span>INR {{cartData.coupon_amount}}</li>
+              <li *ngIf="cartData.promo_voucher != ''"><span class="mr-auto"> </span><a href="javascript:void(0)" (click)="removeOffer(cartData.promo_voucher)">Remove Offer</a></li>
+              <!-- <li class="points_earns"><img src="assets/images/sooper_points.png" class="points">Points Earned : 25</li>
+                <li>
+                  <p class="saved_text">You will save AED 50.00 on this order</p>
+                </li> -->
+              <li class="total_smmary">
+                <h4 class="mr-auto">Total Amount</h4>
+                <span>INR</span>{{cartData.grand_total}}
+              </li>
+            </ul>
+            <button (click)="placeOrder()" class="add_button">Place Order</button>
+          </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </section>
+
+  <!-- Apply Code -->
+  <div class="modal fade common_modal" id="Coupon_code" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+              aria-hidden="true">&times;</span> </button>
+          <div class="top_modal_sec">
+            <h3 class="sub_title">Apply Coupon</h3>
+            <!-- <div class="input-group mb-3 mt-4">
+              <input type="text" class="form-control" placeholder="Recipient's username"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append pl-3">
+                <button  class="add_button pr-5 pl-5">Apply</button>
+              </div>
+            </div> -->
+            <hr class="border-divider">
+          </div>
+          <div class="coupon_sec">
+            <ul>
+              <ng-container *ngIf="giftList.lenght != '0'">
+              <li *ngFor=" let offer of giftList">
+                <div class="d-flex align-items-center"> <span class="coupon_code mr-auto">{{offer.name}}</span>
+                  <div>
+                    <button (click)="applyOffer(offer)" class="cancel_order_link btn_apply">Apply</button>
+                  </div>
+                </div>
+                <div class="coupon_disc pt-3" >{{offer.comments}}</div>
+                <!-- <div class="d-flex align-items-center pt-2">
+                  <div class="">Valid till: 30 Sep 2021</div>
+                  <div class="ml-auto">Max Discount: AED2500</div>
+                </div> -->
+              </li>
+            </ng-container>
+            <ng-container *ngIf="giftList.lenght == '0'">
+              <li>
+                <div class="d-flex align-items-center"> <span class="coupon_code mr-auto">No offer for you</span>
+                  <!-- <div>
+                    <button class="cancel_order_link btn_apply">Apply</button>
+                  </div> -->
+                </div>
+                <!-- <div class="coupon_disc pt-3" [innerHTML]="{{offer.comments}}"></div> -->
+                <!-- <div class="d-flex align-items-center pt-2">
+                  <div class="">Valid till: 30 Sep 2021</div>
+                  <div class="ml-auto">Max Discount: AED2500</div>
+                </div> -->
+              </li>
+            </ng-container>
+              <!-- <li>
+                <div class="d-flex align-items-center"> <span class="coupon_code mr-auto">UPI5</span>
+                  <div>
+                    <button class="cancel_order_link btn_apply">Apply</button>
+                  </div>
+                </div>
+                <div class="coupon_disc pt-3">5% instant discount on Electronics Products on min purchase of AED.100 .
+                  Valid only on UPI Transactions.</div>
+                <div class="d-flex align-items-center pt-2">
+                  <div class="">Valid till: 30 Sep 2021</div>
+                  <div class="ml-auto">Max Discount: AED2500</div>
+                </div>
+              </li>
+              <li>
+                <div class="d-flex align-items-center"> <span class="coupon_code mr-auto">UPI5</span>
+                  <div>
+                    <button class="cancel_order_link btn_apply">Apply</button>
+                  </div>
+                </div>
+                <div class="coupon_disc pt-3">5% instant discount on Electronics Products on min purchase of AED.100 .
+                  Valid only on UPI Transactions.</div>
+                <div class="d-flex align-items-center pt-2">
+                  <div class="">Valid till: 30 Sep 2021</div>
+                  <div class="ml-auto">Max Discount: AED2500</div>
+                </div>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

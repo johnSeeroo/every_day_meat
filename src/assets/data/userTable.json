@@ -1,0 +1,4 @@
+{
+"tableHeaders": ["Employee Name", "User Name/ID", "User Role","Action"],
+"tableFields": ["employee", "userName", "role", "action"]
+}

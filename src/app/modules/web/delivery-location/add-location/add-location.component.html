@@ -1,0 +1,83 @@
+<main role="main" class="content_area">
+    <div class="breadcrumb_block">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><span>Request Delivery Location</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="cart_page address_select">
+      <div class="container">
+        <div class="row align_center">
+          <div class="col-12">
+            <h3 class="sub_title mb-3">Request Delivery Location</h3>
+          </div>
+        </div>
+         <div class="row width_set">
+          <div class="col-md-12 col-lg-12 pl-12">            
+            <form [formGroup]="addLocationForm" class="register_form profile_form" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="col-12">
+                      <label class="form-label">Pincode</label>
+                      <input type="text" class="form-control" formControlName="pincode" placeholder="Pincode" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="6">
+                    </div>
+                    <div *ngIf="issubmitted && addLocationForm.controls.pincode.errors" class="error_signup"> 
+                        <small *ngIf="issubmitted && addLocationForm.controls.pincode.errors.required"> Pincode is required. </small>
+                        <small *ngIf="addLocationForm.controls.pincode.errors.minLength "> Invalid Pincode </small>
+                      </div>
+                </div>
+              <div class="form-row">
+                <div class="col-12">
+                  <label class="form-label">Phone number</label>
+                  <input type="text" class="form-control" formControlName="phone" placeholder="phone" onkeypress='return event.charCode >= 48 && event.charCode <= 57' maxlength="12">
+                </div>
+                <div *ngIf="issubmitted  && addLocationForm.get('phone').invalid ">
+                    <small *ngIf="addLocationForm.get('phone').errors?.required" class="error_signup">Phone
+                      number is required</small>
+                    <small
+                      *ngIf="addLocationForm.get('phone').errors?.minLength"
+                      class="error_signup">Phone number should be between 8-12 numbers</small>
+  
+                    <small
+                      *ngIf="!addLocationForm.get('phone').errors?.required && addLocationForm.get('phone').errors.invalidNumber"
+                      class="error_signup">Invalid
+                      Phone Number</small>
+                  </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12">
+                  <label class="form-label">Area name </label>
+                  <input type="text" class="form-control" formControlName="areaName" placeholder="Area name">
+                </div>
+                <div *ngIf="issubmitted && addLocationForm.controls.areaName.errors" class="error_signup"> 
+                    <small *ngIf="addLocationForm.controls.areaName.errors.required"> Area name is required. 
+                    </small>
+                  </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12">
+                  <label class="form-label">Area description</label>
+                  <textarea class="form-control" formControlName="areaDescription" placeholder="Area description"> </textarea>
+                </div>
+                <div *ngIf="issubmitted && addLocationForm.controls.areaDescription.errors" class="error_signup"> 
+                    <small *ngIf="addLocationForm.controls.areaDescription.errors.required"> Area description is required. 
+                    </small>
+                  </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 text-right mt-3">
+                  <button type="submit" class="add_button">Submit</button>
+                </div>
+              </div>
+            </form>
+         
+         </div>
+        </div>
+      </div>
+    </section>
+  </main>

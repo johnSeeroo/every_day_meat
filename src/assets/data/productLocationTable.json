@@ -1,0 +1,5 @@
+{
+    "tableHeaders": ["Location", "Quantity"
+       ],
+    "tableFields": ["location", "quantity"]
+    }

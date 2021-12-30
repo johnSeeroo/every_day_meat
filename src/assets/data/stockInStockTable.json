@@ -1,0 +1,5 @@
+{
+    "tableHeaders":["Movement date","Caused by","Quantity change","Coast/price per unit","Balance after","Value in stock after","Average cost after"],
+    "tableFields":["movementDate","causedBy","quantityChange","coast","balanceAfter","valueInStockAfter","averageCostAfter"],
+    "displayedColumnFilters" : ["movementDateFilter","causedByFilter","quantityChangeFilter","coastFilter","balanceAfterFilter","valueInStockAfterFilter","averageCostAfterFilter"]
+}

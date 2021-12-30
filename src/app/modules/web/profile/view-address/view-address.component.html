@@ -1,0 +1,90 @@
+<main role="main" class="content_area">
+    <div class="breadcrumb_block">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><span>Address</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add adress Modal -->
+      <div class="modal-lg width_set">
+              <h3 class="sub_title heading_align_center">Address</h3> 
+            <form class="register_form profile_form" [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+              <div class="form-row">
+                <div class="col-6">
+                    <label class="form-label">Name</label>
+                      <input type="text" class="form-control" formControlName="name">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label">Email</label>
+                          <input type="text" class="form-control" formControlName="email">
+                        </div>
+              </div>
+              <div class="form-row">              
+                <div class="col-6">
+                <label class="form-label">Building name</label>
+                  <input type="text" class="form-control" formControlName="buildingName">
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Flat number</label>
+                  <input type="text" class="form-control" formControlName="flatNumber">
+                </div>
+              </div>
+              <div class="form-row">
+                
+                <div class="col-6">
+                <label class="form-label">Street</label>
+                  <input type="text" class="form-control" formControlName="street">
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Street 2</label>
+                  <input type="text" class="form-control" formControlName="street2">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-6">
+                    <label class="form-label">City</label>
+                      <input type="text" class="form-control" formControlName="city">
+                    </div>
+                    <div class="col-6">
+                        <label class="form-label">Pincode</label>
+                          <input type="text" class="form-control" formControlName="pincode">
+                        </div>
+              </div>
+
+              <div class="form-row">
+                
+                <div class="col-6">
+                <label class="form-label">Phone number</label>
+                  <input type="text" class="form-control" formControlName="phoneNumber">
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Mobile number</label>
+                  <input type="text" class="form-control" formControlName="mobileNumber">
+                </div>
+              </div>
+
+              <div class="form-row">
+                
+                <div class="col-6">
+                <label class="form-label">Address audio</label>
+                  <input type="text" class="form-control" formControlName="addressAudio">
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Zip</label>
+                  <input type="text" class="form-control" formControlName="zip">
+                </div>
+              </div> 
+              <div class="form-row">
+                <div class="col-12 text-right mt-3">
+                  <button type="submit" class="add_button">Save your Changes</button>
+                </div>
+              </div>
+            </form>
+    </div> 
+  </main>

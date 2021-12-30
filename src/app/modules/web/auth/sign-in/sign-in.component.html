@@ -1,0 +1,96 @@
+
+<body class="hold-transition login-page">
+    <div class="login-box"> 
+      <div class="card border_login">
+        <div class="card-body login-card-body">
+          <p class="login-box-msg">Login</p>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <ng-container *ngIf="emailLogin">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control"  formControlName="email" placeholder="Email">
+            </div>
+            <div *ngIf="issubmitted && loginForm.controls.email.errors" class="error_signup">
+                <div *ngIf="issubmitted && loginForm.controls.email.errors.required"> Email address is
+                  required. </div>
+                <div *ngIf="issubmitted && loginForm.controls.email.errors.pattern"> Invalid Email
+                  Address. </div>
+              </div>
+            <div class="input-group mb-3 margin-bottom_">
+              <input type="password" class="form-control" formControlName="password" placeholder="Password">
+            </div>
+            <div *ngIf="issubmitted && loginForm.controls.password.errors" class="error_signup">
+                <div *ngIf="issubmitted && loginForm.controls.password.errors.required">Password
+                  is required. </div>
+              </div>
+        </ng-container>
+
+            <ng-container *ngIf="phoneLogin">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control"  formControlName="phoneNumber" placeholder="Phone Number">
+              </div>
+              <div *ngIf="isGetOTPClicked  && loginForm.get('phoneNumber').invalid ">
+                <small *ngIf="loginForm.get('phoneNumber').errors?.required" class="error_signup">Phone
+                  Number is required</small>
+                <!-- <small
+                  *ngIf="!loginForm.get('phoneNumber').errors.invalidNumber && (loginForm.get('phoneNumber').minLength || !loginForm.get('phoneNumber').maxLength)"
+                  class="error_signup">Phone number should be between 8-12 numbers</small> -->
+
+                <small
+                  *ngIf="!loginForm.get('phoneNumber').errors?.required && loginForm.get('phoneNumber').errors.invalidNumber"
+                  class="error_signup">Invalid
+                  Phone Number</small>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="enableOTPField">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control"  formControlName="otp" placeholder="OTP">
+              </div>
+              <div *ngIf="isSubmitOTPClicked  && loginForm.get('otp').invalid ">
+                <small *ngIf="loginForm.get('otp').errors?.required" class="error_signup"> OTP is required</small>
+                <small
+                  *ngIf="!loginForm.get('otp').errors?.required && loginForm.get('otp').errors.invalidNumber"
+                  class="error_signup">Invalid OTP
+                  </small>
+              </div>
+            </ng-container>
+
+            <div class="row">
+              <!-- <div class="col-12">
+                <div class="icheck-primary">
+                  <p class="mb-1"> <a  [routerLink]="['/admin/login/forgotpassword']">Forgot Password</a> </p>
+                </div>
+              </div> -->
+              <ng-container *ngIf="emailLogin">
+              <div class="col-12">
+                <button type="submit" class="btn btn-secondary btn-login text-align">Login <span class="fas fa-angle-right float-right mt-1 mr-3"></span>
+                </button>
+              </div>
+            </ng-container>
+              <ng-container *ngIf="phoneLogin">
+              <div class="col-12">
+                <button type="button" (click)="getOTP()" class="btn btn-secondary btn-login text-align">Get OTP <span class="fas fa-angle-right float-right mt-1 mr-3"></span>
+                </button>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="enableOTPField">
+                <div class="col-12">
+                  <button type="button" (click)="submitOTP()" class="btn btn-secondary btn-login text-align">Submit OTP <span class="fas fa-angle-right float-right mt-1 mr-3"></span>
+                  </button>
+                </div>
+              </ng-container>
+                <div class="col-12 ">
+                    <p class="align_center_text">
+                 <a (click)="loginTypeChange()">
+                    Login with
+                    <span *ngIf="phoneLogin || enableOTPField">Email</span>
+                    <span *ngIf="emailLogin">Phone Number</span>
+                </a> </p>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </body>
+    

@@ -1,0 +1,10 @@
+<div class="message-dialoge-wrapper bg-white text-center p-3">
+  <div class="message-icon"></div>
+  <div class="message-txt py-3">
+   <h4  class="f_16 m-0"><img src="../../../../assets/images/alert.png"/> {{view.question}} </h4> 
+  </div>
+  <div class="w-100">
+    <button  class="btn btn-danger font-weight-semibold text-uppercase btn_big mr-2" (click)="onCancel()">{{view.cancelBtnText}}</button>
+    <button  class="btn btn-primary font-weight-semibold text-uppercase btn_big" (click)="onConfirm()">{{view.confirmBtnText}}</button>
+  </div>
+</div>

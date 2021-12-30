@@ -1,0 +1,4 @@
+{
+    "tableHeaders": [ "Resource Name", "Cost per hour", "Action"],
+    "tableFields": [ "resourceName", "costPerHour", "action"]
+    }

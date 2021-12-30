@@ -1,0 +1,212 @@
+<main role="main" class="content_area">
+  <section class="account_page">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h3 class="sub_title">My Order</h3>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-md-5 col-lg-3">
+          <ul class="myAccount_list">
+            <li>
+              <h6>Janne Doe</h6>
+            </li>
+            <li><a href="#">profile</a></li>
+            <li><a href="#">my rewards</a></li>
+            <li class="active"><a href="#">my orders</a></li>
+            <li><a href="#">my address</a></li>
+            <li><a href="#">my wallet</a></li>
+            <li><a href="#">my notifications</a></li>
+            <li><a href="index.html">Logout</a></li>
+          </ul>
+        </div> -->
+        <div class="col-md-12 col-lg-12 pl-12">
+          <div class="order-item"  >
+            <ng-container *ngIf="orderDetails != '' || orderDetails != 'undefined'">
+            <div class="order_title d-flex">
+              <div>
+                <h3>Invoice Number : {{orderDetails.invoice_number}}</h3>
+                <!-- <p>Address : Loreum ipsum dummy text</p> -->
+              </div>
+              <!-- <a (click)="cancelOrder()" class="cancel_order_link ml-auto">Cancel the Item</a>  -->
+            </div>
+              
+              
+            <div class="order_body">
+              <div class="row">
+                <!-- <div class="col-lg-6">
+                  <div class="media"> -->
+                    <!-- <div class="order_item-image"> 
+                      <img src="assets/images/detail/1.jpg"> 
+                    </div> -->
+                    <!-- <div class="media-body order-item_text"> -->
+                      <!-- <h5>Liamond Calo Stud Farrings</h5> -->
+                      <!-- <ul>
+                        <li>Delivery date <span>{{orderDetails.delivery_date}}</span></li>
+                        <li>Time slot <span>{{orderDetails.time_slot_id}}</span></li>
+                      </ul>
+                    </div> -->
+                  <!-- </div>
+                </div> -->
+                <div class="col-lg-3">
+                  <h5>Delivery date</h5>
+                  <h4 class="red_text">{{orderDetails.delivery_date}}</h4>
+                </div>
+                <div class="col-lg-3">
+                  <h5>Time slot</h5>
+                  <h4 class="red_text">{{orderDetails.time_slot_id}}</h4>
+                </div>
+                <div class="col-lg-3">
+                  <h5>Status</h5>
+                  <h4 class="red_text">{{orderDetails.order_status_name}}</h4>
+                </div>
+                <div class="col-lg-3" >
+                  <h5>Payment Status</h5>
+                  <h4 class="red_text" *ngIf="orderDetails.payment_method != 'Cash On Delivery'">{{paymentData}}</h4>
+                  <h4 class="red_text" *ngIf="orderDetails.payment_method == 'Cash On Delivery'">Cash on Delivery</h4>
+
+                  <!-- <button (click)="trackOrder()" class="add_button" data-toggle="collapse" data-target="#order_status" aria-expanded="true">Track Your Order</button> -->
+                </div>
+              </div>
+              <div class="row outfit_listings selected_items_pay pt-3">
+                <ng-container *ngIf="orderProductList.length != '0'">
+                <li class="item" *ngFor="let item of orderProductList">
+                  <div class="sellers_thumb"> <img src="{{item.image_url}}" alt="" class="mw-100">
+                    <h3>{{item.en_lang}}</h3>    
+                    <h4><span>{{item.product_uom_qty}} x {{item.offer_unit_price}}</span> INR {{item.total}}</h4> 
+                    
+                    <div class="mx-auto">
+                      <mat-radio-group aria-label="Select an option"  class="rating">
+                        <input type="radio" value="5" id="5" [checked] = "ratingVal == 5 ? true : false">
+                        <label for="5" (click)=ratingValue(5)>☆</label>
+                        <input type="radio" value="4" id="4" [checked] = "ratingVal == 4 ? true : false">
+                        <label for="4" (click)=ratingValue(4)>☆</label>
+                        <input type="radio" value="3" id="3" [checked] = "ratingVal == 3 ? true : false">
+                        <label for="3" (click)=ratingValue(3)>☆</label>
+                        <input type="radio" value="2" id="2" [checked] = "ratingVal == 2 ? true : false">
+                        <label for="2" (click)=ratingValue(2)>☆</label>
+                        <input type="radio" value="1" id="1" [checked] = "ratingVal == 1 ? true : false">
+                        <label for="1" (click)=ratingValue(1)>☆</label>
+                      </mat-radio-group>
+                    </div>
+                    <button (click)="rateProduct(item.product_id)" class="add_button">Submit feedback</button>
+
+                  </div>
+                </li>
+              </ng-container>
+              </div>
+              
+            </div>
+            <div class="order-footer d-flex">
+            	<a class="cancel_order_link mr-2 mt-0" data-toggle="collapse" href="#order_Detail" role="button" >Order Detail</a>
+              <!-- <a class="cancel_order_link mr-2 mt-0" data-toggle="collapse" (click)="redirectFeedbackPage()" role="button" >Order Feedback</a> -->
+              <a *ngIf="orderDetails.order_status_name != 'Order Cancelled'" class="cancel_order_link mr-2 mt-0" data-toggle="collapse" (click)="cancelDropdownShow = !cancelDropdownShow"  role="button" >Cancel order</a>
+              <div class="form-group" *ngIf="cancelDropdownShow">
+                <form [formGroup]="cancellationForm">
+                <label>Reason for cancellation </label>
+                <select name="country" formControlName="cancelReason" id="countySel" size="1"
+                  class="form-control select2 selact_" placeholder="Select Reason"  (change)="cancelOrder()"
+                  >
+                  <!-- <option [value]="0">--Select Country--</option> -->
+                  <option *ngFor="let item of cancellationReasons" [ngValue]="item.id">{{item.name}}</option>
+                </select>
+              </form>
+              </div>
+              <!-- <h3><span>item : </span>1</h3> -->
+              <h4 class="ml-auto"><span>Total : </span>INR {{orderDetails.grand_total}}</h4>
+            </div>
+            
+            <div class=" collapse " id="order_Detail">
+                <div class="order_status">
+                	<div class="row">
+                    	<div class="col-12">
+                        	<h3 class="sub_title">Bill Details</h3>
+                        </div>
+                    </div>
+                  	<div class="row">
+                    	<div class="col-md-6 col-lg-4 pr-3">
+                        	<ul class="detial_list">
+                            	<li><span>Purchase Date</span><span class="ml-auto">17-08-2021</span></li>
+                                <li><span>Delivery Date</span><span class="ml-auto">{{orderDetails.delivery_date}}</span></li>
+                                <li><span>Delivery Time</span><span class="ml-auto">{{orderDetails.time_slot_id}}</span></li>
+                                <li><span>Invoice Id</span><span class="ml-auto ">{{orderDetails.invoice_number}}</span></li>
+                                <li><span>Payment Method</span><span class="ml-auto">{{orderDetails.payment_method}}</span></li>                            
+                            </ul>
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-4 ml-auto pl-3">
+                        	<ul class="detial_list">
+                            	<li><span>Amount</span><span class="ml-auto tex-right">INR {{orderDetails.amount_total}}</span></li>
+                                <li><span>Delivery Charge</span><span class="ml-auto tex-right">INR {{orderDetails.free_delivery_charge}}</span></li>
+                                <li><span>Coupon Discount</span><span class="ml-auto tex-right">INR {{orderDetails.coupon_amount}}</span></li>
+                                <li><span>Total</span><span class="ml-auto tex-right">INR {{orderDetails.grand_total}}</span></li>
+                            </ul>
+                        </div>
+                    
+                    </div>
+                    
+                    <!-- <div class="row">
+                    	<div class="col-12">
+                        	<div class="saved_amount">
+                            	You Saved AED :- 50.00
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            
+            <div class=" collapse " id="order_status">
+            <div class="order_status">
+              <ul class="status_progress">
+                <li class="active_order">
+                  <div class="media">
+                    <div class="media-body">
+                      <h5>Order Placed</h5>
+                      <p>We have received your order<br>
+                        10.00 AM , 22 Aug 2021 , Sunday </p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media">
+                    <div class="media-body">
+                      <h5>Confirmed</h5>
+                      <p>We confirmed your order</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media">
+                    <div class="media-body">
+                      <h5>Out for Delivery</h5>
+                      <p>Your product will reach you shortly</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="media">
+                    <div class="media-body">
+                      <h5 class="mt-0">Delivered</h5>
+                      <p>Your product delivered successfully</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            </div>
+          </ng-container>
+            <ng-container *ngIf="orderDetails == ''|| orderDetails == 'undefined'">
+              <div class="order_title d-flex">
+                <div>
+                  <h3>No data to show</h3>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

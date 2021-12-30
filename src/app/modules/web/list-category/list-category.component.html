@@ -1,0 +1,177 @@
+<main role="main" class="content_area">
+  
+  
+    <!--mobile show-->
+    <div class="tab_show mobile_sort_filter ">
+      <div class="container">
+        <div class="row">
+          <div class="dropdown col-6">
+            <div id="sort_accordion">
+              <div class="filter_menu1"> <a href="#sortModal" data-toggle="modal" ><img src="assets/images/sort.png">Sort</a> </div>
+            </div>
+          </div>
+          <div class="dropdown mr-auto col-6">
+            <div id="filter_accordian">
+              <div class="filter_menu1"> <a href="#filterModal" data-toggle="modal" ><img src="assets/images/filter.png">Filter</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sort Modal -->
+    <div class="modal" id="sortModal">
+      <div class="modal-dialog">
+        <div class="modal-content"> 
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            <ul class="select_sort">
+              <li>
+                <label class="radiocontainer">Popularity
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">Price - Low to High
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">Price - High to Low
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">Alphabetical
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+              <li>
+                <label class="radiocontainer">% Off - High to Low
+                  <input type="radio" checked="checked" name="radio">
+                  <span class="radiomark"></span> </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="breadcrumb_block">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><span>Category Name</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="listing_page">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row">
+                <!-- <div class="col-lg-3 col-xl-2 tab_hide"> <a href="#Categories" class="sorting_tabs " data-toggle="collapse">Categories <i class="toggle_icon"></i></a>
+                  <div id="Categories" class="collapse show ">
+                    <div class="sorting_content">
+                      <ul>
+                        <li><a href="#">Fruits &amp; Vegetables</a></li>
+                        <li><a href="#">Beverages</a></li>
+                        <li><a href="#">Groceries</a></li>
+                        <li><a href="#">Beauty &amp; Skin care</a></li>
+                        <li><a href="#">Fish &amp; Seafood</a></li>
+                        <li><a href="#">Eggs &amp; Meat</a></li>
+                        <li><a href="#">Bakery</a></li>
+                        <li><a href="#">Masalas &amp; Spices</a></li>
+                        <li><a href="#">Shop By Brands</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a href="#food_prefer" class="sorting_tabs " data-toggle="collapse">Food Preference <i class="toggle_icon"></i></a>
+                  <div id="food_prefer" class="collapse show">
+                    <div class="sorting_content">
+                      <ul>
+                        <li>
+                          <label class="sortCheckBox">Vegetarian
+                            <input type="checkbox" >
+                            <span class="sortcheckmark"></span> </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a href="#Size" class="sorting_tabs " data-toggle="collapse">Packet Size <i class="toggle_icon"></i></a>
+                  <div id="Size" class="collapse show">
+                    <div class="sorting_content ">
+                      <ul>
+                        <li>
+                          <label class="sortCheckBox">250gm-1kg
+                            <input type="checkbox" >
+                            <span class="sortcheckmark"></span> </label>
+                        </li>
+                        <li>
+                          <label class="sortCheckBox">1kg-5kg
+                            <input type="checkbox" >
+                            <span class="sortcheckmark"></span> </label>
+                        </li>
+                        <li>
+                          <label class="sortCheckBox">5kg-10kg
+                            <input type="checkbox" >
+                            <span class="sortcheckmark"></span> </label>
+                        </li>
+                        <li>
+                          <label class="sortCheckBox">10kg OR More
+                            <input type="checkbox" >
+                            <span class="sortcheckmark"></span> </label>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="col-lg-12 col-xl-12">
+                  <!-- <div class="d-flex outfit_list_head align-items-center">
+                    <h2 class="sub_title">Fruits &amp; Vegetables</h2>
+                    <div class="list_sorting ml-auto">
+                      <label>Sort by</label>
+                      <select class="form-control form_select">
+                        <option label="Popularity" selected="selected">Popularity</option>
+                        <option label="Price - Low to High">Price - Low to High</option>
+                        <option label="Price - High to Low">Price - High to Low</option>
+                        <option label="Alphabetical">Alphabetical</option>
+                        <option label="% Off - High to Low">% Off - High to Low</option>
+                      </select>
+                    </div>
+                  </div>
+                   -->
+    
+                  
+    
+                  
+                  
+                  
+                  <ul class="row outfit_listings">
+                      <ng-container *ngFor="let category of categoryList">
+                    <li class="item">
+                      <div class="sellers_thumb"> <img src="{{category.image_url}}" alt="" class="mw-100">
+                        <h3>{{category.en_lang}}</h3>
+                        <div class="d-flex align-items-center">
+                          
+                          <button (click)="viewProductList(category)" class="add_button ml-auto mr-auto">View</button>
+                        </div>
+                      </div>
+                    </li>
+                </ng-container>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+

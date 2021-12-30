@@ -1,0 +1,5 @@
+{
+    "tableHeaders": ["Items","Notes","Planned Quantity", "Cost","Availabilty","Buy"],
+    "tableFields": ["rawMaterial","notes","plannedQuantity", "cost","availability","buy"]
+    
+}

@@ -1,0 +1,82 @@
+<main role="main" class="content_area">
+    <section>
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let banner of homePageBanners; let i = index">
+              <ng-template carouselSlide>
+                <a href="{{banner.banner_url}}">
+                <img src="{{banner.image_url}}" alt="everyDayMeat" class="d-block w-100">
+                </a>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+    </section>
+    <!-- <section class="mt-2"> <img src="assets/images/devide2.jpg" alt="" class="w-100"> </section> -->
+    <section class="popular_sec">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 pt-4 pb-2 wow fadeInUp animated" data-wow-delay=".3s">
+            <h2 class="sub_title">Categories</h2>
+            <a [routerLink]="['/web/category']">View all</a>
+          </div>
+        </div>          
+          <owl-carousel-o [options]="categoryOptions">
+        <ng-container *ngFor="let category of categoryList">
+            <ng-template carouselSlide>
+              <a (click)="categoryDetailPage(category)">
+               <img src="{{category.image_url}}" alt="{{category.en_lang}}" class="w-100">
+              <h3>{{category.en_lang}}</h3>
+            </a>
+        </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      </div>
+    </section>
+    <section class="pack_sec pt-2 pb-3">
+      <div class="container-fluid">
+        <div class="row customRow_7">
+          <div class="col-sm-4 col-6"> <a href="#"><img src="assets/images/green_bg2.png" class="w-100" alt="MeatEveryDay Special"></a> </div>
+          <div class="col-sm-4 col-6"> <a href="#"><img src="assets/images/green_bg3.png" class="w-100" alt="MeatEveryDay Special"></a> </div>
+          <div class="col-sm-4 col-6"> <a href="#"><img src="assets/images/green_bg4.png" class="w-100" alt="MeatEveryDay Special"></a> </div>
+        </div>
+      </div>
+    </section>
+    <section class="popular_sec">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 pt-4 pb-2 wow fadeInUp animated" data-wow-delay=".3s">
+            <!-- <h2 class="sub_title">Popular</h2> -->
+          </div>
+        </div>          
+          <owl-carousel-o [options]="popularOptions">
+        <ng-container *ngFor="let product of popular">
+            <ng-template carouselSlide>
+               <img src="{{product.image_url}}" alt="{{product.en_lang}}" class="w-100">
+              <!-- <h3>{{product.en_lang}}</h3> -->
+        </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      </div>
+    </section>
+    <!-- <section class="mt-2"> <img src="assets/images/devide2.jpg" alt="" class="w-100"> </section> -->
+    <section class="popular_sec">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 pt-4 pb-2 wow fadeInUp animated" data-wow-delay=".3s">
+            <h2 class="sub_title">Top Rated</h2>
+          </div>
+        </div>          
+          <owl-carousel-o [options]="topRatedOptions">
+        <ng-container *ngFor="let item of topRated">
+            <ng-template carouselSlide>
+              <a (click)="productViewPage(item)">
+              <!-- <div class="col-sm-3 col-md-3 col-6 pb-3"> -->
+               <img src="{{item.image_url}}" alt="{{item.en_lang}}" class="w-100">
+              <h3>{{item.en_lang}}</h3>
+              </a>
+          <!-- </div> --> 
+        </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      </div>
+    </section>
+  </main>

@@ -1,0 +1,7 @@
+{
+    "tableHeaders": ["Order #","Customer","Product",  "Planned/Actual quantity", "Planned/Actual time","Material Cost","Sub-assemblies cost","Operation Cost","Total Cost","Done","Production"],
+    "tableFields": ["moCode","workOrder","product",  "plannedQuantity", "plannedTime","cost","subAssembliesCost","operationCost","moCost","completionDate","status"],
+    "displayedColumnFilters" : [
+        "orderFilter","customerFilter", "productFilter", "qtyFilter", "plannedTimeFilter","materialCostFilter","subAssembliesCostFilter","operationCostFilter","totalCostFilter","doneFilter","productionFilter"
+      ]
+    }

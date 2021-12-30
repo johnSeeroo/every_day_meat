@@ -1,0 +1,4 @@
+{
+"tableHeaders": [ "Company Name", "Contact Name"],
+"tableFields": [ "companyName", "contactName"]
+}

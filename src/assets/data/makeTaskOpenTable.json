@@ -1,0 +1,7 @@
+{
+    "tableHeaders": ["action","Resource","MO #","MO.deadline", "Del.deadline", "Product", "Planned qty","Operation","Planned time","Status"],
+    "tableFields": ["action","resource","moNo","moDeadline", "delDeadline", "product", "plannedqty","operation","plannedTime","status"],
+    "displayedColumnFilters" : [
+       "actionFilter", "resourceFilter","moNoFilter", "moDeadlineFilter", "delDeadlineFilter", "productFilter", "plannedQtyFilter","operationFilter","plannedTimeFilter","statusFilter"
+      ]
+    }

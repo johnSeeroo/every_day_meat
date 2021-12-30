@@ -1,0 +1,6 @@
+{
+"tableHeaders": [ "Employee Name", "Designation", "Manager", "Department",
+				"Phone Number", "Email Id", "Action"],
+"tableFields": [ "employeeName", "designation", "manager", "dept", "phoneNumber", 
+				"emailAddress", "action"]
+}
