@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // apiUrl:'http://13.127.199.227:8080/1scanmrp/rest/mrp/',
   // apiUrl:'http://45.79.56.23:8888/get/v2/',
   apiUrl: 'http://34.136.228.210:8069/get/v5/',
   
