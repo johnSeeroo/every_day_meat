@@ -101,29 +101,15 @@ export class HeaderComponent implements OnInit {
   }
 
   productSearch(){
+    debugger
+
+    if (this.formProductSearch.value) {
+      this.router.navigate(['web/product/searchProduct/',  `${this.formProductSearch.value}` ]);
+      this.formProductSearch.reset();
+    }else{
+      this.modalService.showNotification("Enter some keyword and search");
+    }
    
-    // let url = WebAPI.searchProductPage();
-    // var modal = new FormData();
-    // modal.append('name', this.formProductSearch.value);
-    // modal.append('sort_value', '0');
-    // modal.append('limit', '10');
-    // modal.append('page_number', '1');
-    // modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-    // this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-    //   if (data.body !== undefined) {
-    //     if (data.body.status == true && data.body) {
-    //       console.log(data.body);
-    //       console.log(data.body.product.en_lang)
-
-    //     }
-    //   }
-
-    // }, (err: HttpErrorResponse) => {
-    //   if (err.status == 403) {
-    //     localStorage.clear()
-    //     this.router.navigate([''])
-    //   }
-    // });
   }
 
   getItemByCategory(item){

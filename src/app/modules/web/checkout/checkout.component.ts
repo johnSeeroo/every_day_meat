@@ -29,6 +29,8 @@ export class CheckoutComponent implements OnInit {
   timeSlotSelected: boolean = false;
   publicId: any;
   giftList: any = [];
+  selectedTime: any = '';
+  selectedIndex: any;
 
   constructor(
     private router: Router,
@@ -40,8 +42,8 @@ export class CheckoutComponent implements OnInit {
     private popup: PopupService,
   ) { 
     this.checkOutForm = this.formBuilder.group({
-      selectedTimeSlot: ['', Validators.required],
-      selectedPayment: ['', Validators.required],
+      selectedTimeSlot: [''],
+      selectedPayment: [''],
     });
    }
 
@@ -55,18 +57,21 @@ export class CheckoutComponent implements OnInit {
       this.user_id = localStorage.getItem('user_id');
       this.getCheckOutDetails();
     }else{
-      // let notLoggedInUser: ConfirmModalData = { 
-      //   question: 'Please login to continue', confirmBtnText: 'Continue', cancelBtnText: 'Cancel' };
-      //  this.modalService.confirm(notLoggedInUser).subscribe(result => {
-      //   if(result){
-      //     // this.router.navigate(['web/sign-in']);
-
-      //   }
-      // });
-      this.publicId = localStorage.getItem('public_id')
-      this.popup.failureMessage = "Please login to continue ";
-          this.popup.failurepopup();
+      let notLoggedInUser: ConfirmModalData = { 
+        question: 'Please login to continue', confirmBtnText: 'Continue', cancelBtnText: 'Cancel' };
+       this.modalService.confirm(notLoggedInUser).subscribe(result => {
+        if(result){
+          this.publicId = localStorage.getItem('public_id')
           this.router.navigate(['web/sign-in', `${this.publicId}`]);
+
+        }
+      });
+
+
+      // this.publicId = localStorage.getItem('public_id')
+      // this.popup.failureMessage = "Please login to continue ";
+      //     this.popup.failurepopup();
+      //     this.router.navigate(['web/sign-in', `${this.publicId}`]);
 
     }
   }
@@ -144,7 +149,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   placeOrder(){
-    if( this.checkOutForm.value.selectedTimeSlot == ''){
+    console.log(this.selectedTime);
+    // if( this.checkOutForm.value.selectedTimeSlot == ''){
+    //   this.modalService.showNotification("Select a time slot");
+    //   return;
+    if (this.selectedTime == ''){
       this.modalService.showNotification("Select a time slot");
       return;
     }else if(this.checkOutForm.value.selectedPayment == ''){
@@ -166,7 +175,8 @@ export class CheckoutComponent implements OnInit {
     var modal = new FormData();
     modal.append('user_id', localStorage.getItem('user_id'));
         modal.append('order_id', localStorage.getItem('cart_id'));
-        modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+        // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+        modal.append('time_slot_id', this.selectedTime);
         modal.append('delivery_date', this.selectedDate);
         modal.append('pin_id', localStorage.getItem('area_id'));
         modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
@@ -205,7 +215,8 @@ export class CheckoutComponent implements OnInit {
         modal.append('mobile1', this.addressData.mobile1);
         modal.append('email', this.addressData.email);
         modal.append('payment_type', '1');
-        modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+        // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+        modal.append('time_slot_id', this.selectedTime);
         modal.append('reference', '1');
         modal.append('delivery_date', this.selectedDate);
         modal.append('pin_id', localStorage.getItem('area_id'));
@@ -257,6 +268,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   applyOffer(offer){
+    if(this.selectedTime == ''){
+      this.modalService.showNotification("Select a time slot");
+      return;
+    }
     var url = WebAPI.applyOffer();
     var modal = new FormData();
     modal.append('cart_id', localStorage.getItem('cart_id'));
@@ -264,7 +279,8 @@ export class CheckoutComponent implements OnInit {
     modal.append('pin_id', localStorage.getItem('area_id'));
     modal.append('promo_voucher', offer.promo_voucher);
     modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-    modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+    // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+    modal.append('time_slot_id', this.selectedTime);
        this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
          if(data.body!==undefined){
           if (data.body.status == true && data.body) {
@@ -293,7 +309,8 @@ export class CheckoutComponent implements OnInit {
     modal.append('pin_id', localStorage.getItem('area_id'));
     modal.append('promo_voucher', voucher);
     modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-    modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+    // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+    modal.append('time_slot_id', this.selectedTime);
        this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
          if(data.body!==undefined){
           if (data.body.status == true && data.body) {
@@ -313,6 +330,22 @@ export class CheckoutComponent implements OnInit {
           this.router.navigate([''])
         }
       });
+  }
+
+  selectedTimeSlot(selectedValue, index){
+    
+    if(this.selectedTime == ''){
+      document.getElementById("slot" + index).className = "clickedButton";
+    }else{
+      document.getElementById("slot" + this.selectedIndex).classList.remove("clickedButton");
+      document.getElementById("slot" + this.selectedIndex).className = "selectDeliveryDate";
+    document.getElementById("slot" + index).className = "clickedButton";
+    }
+    this.selectedIndex =  index;
+    this.selectedTime = selectedValue;
+    
+
+
   }
 
   

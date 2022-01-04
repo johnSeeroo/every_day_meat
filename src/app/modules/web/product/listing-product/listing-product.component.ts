@@ -21,6 +21,8 @@ export class ListingProductComponent implements OnInit {
   totalPages: any = 1;
   numberpages: any = [];
   selectedPage: any = 0;
+  isSearchByKeyword: boolean = false;
+  search_keyword: any;
 
 
   constructor(
@@ -36,6 +38,7 @@ export class ListingProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger
     this.route.params.subscribe(params => {
       if (params.category_id) {
         this.category_id = params.category_id;
@@ -43,40 +46,50 @@ export class ListingProductComponent implements OnInit {
           this.isUser = true;
         }
         this.getProductData();
-        
+
+      } else if (params.search_key_word) {
+        this.isSearchByKeyword = true;
+        console.log(params.search_key_word);
+        this.search_keyword = params.search_key_word
+        this.getProductData();
       }
     });
   }
 
-  getProductData(){
-    let url = WebAPI.getProductsByCategory();
-        var modal = new FormData();
-        modal.append('categ_id', this.category_id);
-        modal.append('sort_value', this.sort_value);
-        modal.append('limit', this.page_limit);
-        modal.append('page_number', this.selectedPage);
-        modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-        this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-          if (data.body !== undefined) {
-            console.log(data.body)
-            if (data.body.status == true && data.body) {
-              debugger
-              this.productList = data.body.product_list;
-              if(data.body.pages != 'undefined' || data.body.pages != '0'){
-                this.totalPages = parseInt(data.body.pages);
-              }
-
-            }else{
-              this.modalService.showNotification(data.body.message);
-            }
+  getProductData() {
+    var modal = new FormData();
+    if (this.isSearchByKeyword) {
+      var url = WebAPI.searchProductPage();
+      modal.append('name', this.search_keyword);
+    } else {
+      var url = WebAPI.getProductsByCategory();
+      modal.append('categ_id', this.category_id);
+    }
+    modal.append('sort_value', this.sort_value);
+    modal.append('limit', this.page_limit);
+    modal.append('page_number', this.selectedPage);
+    modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        console.log(data.body)
+        if (data.body.status == true && data.body) {
+          debugger
+          this.productList = data.body.product_list;
+          if (data.body.pages != 'undefined' || data.body.pages != '0') {
+            this.totalPages = parseInt(data.body.pages);
           }
 
-        }, (err: HttpErrorResponse) => {
-          if (err.status == 403) {
-            localStorage.clear()
-            this.router.navigate([''])
-          }
-        });
+        } else {
+          this.modalService.showNotification(data.body.message);
+        }
+      }
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
   productViewPage(item) {
@@ -141,75 +154,75 @@ export class ListingProductComponent implements OnInit {
     if (!this.isUser) {
       this.modalService.showNotification("Please login to get notification");
 
-    }else{
-    var modal = new FormData();
-    var url = WebAPI.notifyOnAvailability();
-    modal.append('product_id', product.product_id);
-    modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-    modal.append('user_id', localStorage.getItem('user_id'));
-    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-      if (data.body !== undefined) {
-        console.log(data.body)
-        if (data.body.status == true && data.body) {
-          this.modalService.showNotification(data.body.message);
+    } else {
+      var modal = new FormData();
+      var url = WebAPI.notifyOnAvailability();
+      modal.append('product_id', product.product_id);
+      modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
+      modal.append('user_id', localStorage.getItem('user_id'));
+      this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+        if (data.body !== undefined) {
+          console.log(data.body)
+          if (data.body.status == true && data.body) {
+            this.modalService.showNotification(data.body.message);
 
+          }
+          else {
+            this.modalService.showNotification(data.body.message);
+          }
         }
-        else {
-          this.modalService.showNotification(data.body.message);
+
+      }, (err: HttpErrorResponse) => {
+        if (err.status == 403) {
+          localStorage.clear()
+          this.router.navigate([''])
         }
-      }
-
-    }, (err: HttpErrorResponse) => {
-      if (err.status == 403) {
-        localStorage.clear()
-        this.router.navigate([''])
-      }
-    });
-  }
-}
-
-previousPageSelect() {
-  if (this.selectedPage > 1) {
-    document.getElementById("pages" + this.selectedPage).classList.remove("selected_page");
-    this.selectedPage = this.selectedPage - 1;
-    document.getElementById("pages" + this.selectedPage).className = "selected_page";
-    this.getProductData();
-  }
-}
-
-nextPageSelect() {
-  if (this.selectedPage < this.totalPages) {
-    document.getElementById("pages" + this.selectedPage).classList.remove("selected_page");
-    this.selectedPage = this.selectedPage + 1;
-    document.getElementById("pages" + this.selectedPage).className = "selected_page";
-    console.log(this.selectedPage);
-    this.getProductData();
-  }
-}
-
-generatePageNumber() {
-  this.numberpages = [];
-  if (this.totalPages != 0) {
-    for (let i = 1; i <= this.totalPages; i++) {
-      this.numberpages.push(i);
+      });
     }
   }
-  setTimeout(() => {
-    if (document.getElementById("pages" + this.selectedPage)) {
+
+  previousPageSelect() {
+    if (this.selectedPage > 1) {
+      document.getElementById("pages" + this.selectedPage).classList.remove("selected_page");
+      this.selectedPage = this.selectedPage - 1;
       document.getElementById("pages" + this.selectedPage).className = "selected_page";
+      this.getProductData();
     }
-  }, 5);
-}
+  }
 
-pageselect(number) {
-  if(number != this.selectedPage){
-  document.getElementById("pages" + this.selectedPage).classList.remove("selected_page");
-  this.selectedPage = number;
-  console.log(this.selectedPage);
-  document.getElementById("pages" + this.selectedPage).className = "selected_page";
-  this.getProductData();
-}
+  nextPageSelect() {
+    if (this.selectedPage < this.totalPages) {
+      document.getElementById("pages" + this.selectedPage).classList.remove("selected_page");
+      this.selectedPage = this.selectedPage + 1;
+      document.getElementById("pages" + this.selectedPage).className = "selected_page";
+      console.log(this.selectedPage);
+      this.getProductData();
+    }
+  }
 
-}
+  generatePageNumber() {
+    this.numberpages = [];
+    if (this.totalPages != 0) {
+      for (let i = 1; i <= this.totalPages; i++) {
+        this.numberpages.push(i);
+      }
+    }
+    setTimeout(() => {
+      if (document.getElementById("pages" + this.selectedPage)) {
+        document.getElementById("pages" + this.selectedPage).className = "selected_page";
+      }
+    }, 5);
+  }
+
+  pageselect(number) {
+    if (number != this.selectedPage) {
+      document.getElementById("pages" + this.selectedPage).classList.remove("selected_page");
+      this.selectedPage = number;
+      console.log(this.selectedPage);
+      document.getElementById("pages" + this.selectedPage).className = "selected_page";
+      this.getProductData();
+    }
+
+  }
 
 }

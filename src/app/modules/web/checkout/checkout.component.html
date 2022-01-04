@@ -157,25 +157,47 @@
                           </div>
                         </div>
                         <h4>Select a Time Slot </h4>
+                        <div class="col-6 col-sm-4">
+                          <!-- <div class="time_slot"> -->
+                            <!-- <button class="selectDeliveryDate" type="button" > Slot </button> -->
+                            <!-- </div> -->
+                        </div>
                         <ng-container *ngIf="timeSlot.length != '0'">
                         <div class="row customRow_7">
-                            <ng-container *ngFor="let slot of timeSlot">
+                            <!-- <ng-container *ngFor="let slot of timeSlot; let i = index">
                           <div class="col-6 col-sm-4">
-                            <div>
-                              <input id="selectedTimeSlot" name="selectedTimeSlot" type="radio" formControlName="selectedTimeSlot" value = "{{slot.id}}" [disabled]="slot.is_disabled">
-                              <label for="time1" class="radio-label"><span>{{slot.name}}</span></label>
-                            </div>
+                            <div class="DeliveryDate time_slot">
+                              <input id="selectedTimeSlot{{i}}" name="selectedTimeSlot" type="radio" formControlName="selectedTimeSlot" value = "{{slot.id}}"   [disabled]="slot.is_disabled">
+                              
+                              <label for="selectedTimeSlot{{i}}" class="radio-label"><span>{{slot.name}}</span></label>
+                              </div>
+                          </div>
+                        </ng-container> -->
+
+                        <!-- <mat-radio-group aria-label="Select an option"
+                        formControlName="selectedTimeSlot">
+                          <mat-radio-button *ngFor="let slot of timeSlot; let i = index"
+                            [value]="slot.id" [disabled]="!slot.is_disabled">
+                            {{slot.name}}
+                          </mat-radio-button>
+                        </mat-radio-group> -->
+
+                        <ng-container *ngFor="let slot of timeSlot; let i = index">
+                          <div class="col-6 col-sm-4">
+                           
+                              <button id="slot{{i}}" (click)="selectedTimeSlot(slot.id,i)" class="selectDeliveryDate" type="button" [disabled]="slot.is_disabled"> {{slot.name}} </button>
+                             
                           </div>
                         </ng-container>
-                          <!-- <div class="col-6 col-sm-4">
-                            <div class="DeliveryDate time_slot">
-                              <input id="time2" name="DeliveryTime" type="radio" checked>
-                              <label for="time2" class="radio-label"><span>8AM - 10AM</span></label>
-                            </div>
-                          </div>-->
-                          
+
+
+
 
                         </div>
+
+
+
+
                       </ng-container>
                       <ng-container *ngIf="timeSlot.length == '0' && timeSlotSelected">
                         <div class="row customRow_7">

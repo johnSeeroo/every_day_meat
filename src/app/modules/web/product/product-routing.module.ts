@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'detail/:product_id',
     component: DetailProductComponent,
   },
+  {
+    path: 'searchProduct/:search_key_word',
+    component: ListingProductComponent,
+  },
 ];
 
 @NgModule({
