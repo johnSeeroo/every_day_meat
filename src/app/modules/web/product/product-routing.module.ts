@@ -5,7 +5,7 @@ import { ListingProductComponent } from './listing-product/listing-product.compo
 
 const routes: Routes = [
   {
-    path: 'list/:category_id',
+    path: 'list/:category_id/:category_name',
     component: ListingProductComponent,
   },
   {

@@ -23,6 +23,7 @@ export class ListingProductComponent implements OnInit {
   selectedPage: any = 0;
   isSearchByKeyword: boolean = false;
   search_keyword: any;
+  categoryName: any = '';
 
 
   constructor(
@@ -42,6 +43,7 @@ export class ListingProductComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params.category_id) {
         this.category_id = params.category_id;
+        this.categoryName = params.category_name;
         if (localStorage.getItem('user_id')) {
           this.isUser = true;
         }

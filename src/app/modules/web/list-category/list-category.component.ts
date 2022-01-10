@@ -37,7 +37,7 @@ export class ListCategoryComponent implements OnInit {
   }
 
   viewProductList(item){
-    this.router.navigate(['web/product/list/',  `${item.categ_id}` ]);
+    this.router.navigate(['web/product/list/',  `${item.categ_id}`,`${item.en_lang}` ]);
   }
   }
 

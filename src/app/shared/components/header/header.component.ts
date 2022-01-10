@@ -113,7 +113,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getItemByCategory(item){
-    this.router.navigate(['web/product/list/',  `${item.categ_id}` ]);
+    this.router.navigate(['web/product/list/',  `${item.categ_id}`, `${item.en_lang}` ]);
   }
 
 
