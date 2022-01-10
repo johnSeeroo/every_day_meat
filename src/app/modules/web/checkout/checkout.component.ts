@@ -64,6 +64,8 @@ export class CheckoutComponent implements OnInit {
           this.publicId = localStorage.getItem('public_id')
           this.router.navigate(['web/sign-in', `${this.publicId}`]);
 
+        }else{
+          this.router.navigate(['/web/cart']);
         }
       });
 
