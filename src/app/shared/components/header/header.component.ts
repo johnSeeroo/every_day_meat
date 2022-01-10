@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { WebApiService } from '../../services/web/web-api.service';
 import { WebAPI } from '../../../shared/constants/api-end-points/webApi.Constants';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +31,8 @@ export class HeaderComponent implements OnInit {
     private dialog: MatDialog,
     private LocaldataService: LocaldataService,
     public WebApiService: WebApiService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { 
     // this.quantityForm = this.formBuilder.group({
     //   quantity: ['1', [Validators.required]]
@@ -97,6 +99,7 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     localStorage.setItem('user_id','');
+    this.authService._authenticated = false;
     window.location.reload();
   }
 

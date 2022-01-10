@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/core/auth/guards/auth.guard';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { CartComponent } from './cart/cart.component';
@@ -49,6 +50,8 @@ const routes: Routes = [
       },
       {
         path: 'web/profile',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
         loadChildren: () =>
           import('./profile/profile.module').then(
             (m) => m.ProfileModule
@@ -61,6 +64,7 @@ const routes: Routes = [
       },
       {
         path: 'web/checkout',
+        canActivate: [AuthGuard],
         component: CheckoutComponent,
         
       },

@@ -11,7 +11,7 @@ import { CommonService } from 'src/app/shared/services/common/common.service';
   providedIn: 'root',
 })
 export class AuthService {
-  private _authenticated: boolean = false;
+  public _authenticated: boolean = false;
 
   set accessToken(token: string) {
     localStorage.setItem('accessToken', token);

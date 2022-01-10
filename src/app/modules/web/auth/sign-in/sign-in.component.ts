@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { WebAPI } from '../../../../shared/constants/api-end-points/webApi.Constants'
 import { ModalService } from 'src/app/shared/services/common/modal.service';
 import { LocaldataService } from 'src/app/shared/services/web/localdata.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -35,6 +36,7 @@ export class SignInComponent implements OnInit {
     private modalService: ModalService,
     private LocaldataService: LocaldataService,
     private route: ActivatedRoute,
+    private authService: AuthService,
   ) {
     this.loginForm = this.formBuilder.group({
       email: [''],
@@ -186,6 +188,7 @@ export class SignInComponent implements OnInit {
           console.log(data.body)
           if (data.body.status == true && data.body) {
             localStorage.setItem('user_id', data.body.user_id);
+            this.authService._authenticated = true;
             this.LocaldataService.updateUserInfo();
             this.modalService.showNotification(data.body.message);
             this.router.navigate(['']);
