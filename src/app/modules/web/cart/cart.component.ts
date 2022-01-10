@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
   quantityForm: FormGroup;
   confirmationValue: any;
   isUser: boolean = false;
+  publicId: any;
   
 
   constructor(
@@ -166,6 +167,24 @@ export class CartComponent implements OnInit {
 
     // }
 
+  }
+
+  onClickCheckout(){
+    if(localStorage.getItem('user_id')){
+      this.router.navigate(['web/checkout'])
+    }else{
+    let notLoggedInUser: ConfirmModalData = { 
+      question: 'Please login to continue', confirmBtnText: 'Continue', cancelBtnText: 'Cancel' };
+     this.modalService.confirm(notLoggedInUser).subscribe(result => {
+      if(result){
+        this.publicId = localStorage.getItem('public_id')
+        this.router.navigate(['web/sign-in', `${this.publicId}`]);
+
+      }else{
+        return;
+      }
+    });
+  }
   }
 
 }

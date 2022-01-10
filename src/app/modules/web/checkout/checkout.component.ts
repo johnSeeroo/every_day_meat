@@ -17,12 +17,12 @@ import { PopupService } from 'src/app/shared/services/common/popup.service';
 })
 export class CheckoutComponent implements OnInit {
   user_id: any;
-  addressData: any ;
+  addressData: any;
   cartData: any;
   paymentMethod: any = [];
   selectedPaymentMethod: any = '';
   timeSlot: any = [];
-  currentDate : any;
+  currentDate: any;
   tomorrowDate: any;
   checkOutForm: FormGroup;
   selectedDate: any;
@@ -40,237 +40,225 @@ export class CheckoutComponent implements OnInit {
     private datePipe: DatePipe,
     private formBuilder: FormBuilder,
     private popup: PopupService,
-  ) { 
+  ) {
     this.checkOutForm = this.formBuilder.group({
       selectedTimeSlot: [''],
       selectedPayment: [''],
     });
-   }
+  }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('user_id'));
-    if(localStorage.getItem('user_id')){
-      var date=new Date();
+    if (localStorage.getItem('user_id')) {
+      var date = new Date();
       this.currentDate = this.datePipe.transform(date, 'yyyy-MM-dd');
       this.tomorrowDate = date.setDate(date.getDate() + 1);
       this.tomorrowDate = this.datePipe.transform(this.tomorrowDate, 'yyyy-MM-dd');
       this.user_id = localStorage.getItem('user_id');
       this.getCheckOutDetails();
-    }else{
-      let notLoggedInUser: ConfirmModalData = { 
-        question: 'Please login to continue', confirmBtnText: 'Continue', cancelBtnText: 'Cancel' };
-       this.modalService.confirm(notLoggedInUser).subscribe(result => {
-        if(result){
-          this.publicId = localStorage.getItem('public_id')
-          this.router.navigate(['web/sign-in', `${this.publicId}`]);
+    } else {
 
-        }else{
-          this.router.navigate(['/web/cart']);
-        }
-      });
+      if (localStorage.getItem('public_id')) {
+        this.publicId = localStorage.getItem('public_id')
+        this.router.navigate(['web/sign-in', `${this.publicId}`]);
 
-
-      // this.publicId = localStorage.getItem('public_id')
-      // this.popup.failureMessage = "Please login to continue ";
-      //     this.popup.failurepopup();
-      //     this.router.navigate(['web/sign-in', `${this.publicId}`]);
+      } else {
+        this.router.navigate(['web/sign-in']);
+      }
 
     }
   }
 
-  
-
-  getCheckOutDetails(){
+  getCheckOutDetails() {
     debugger
     var modal = new FormData();
-        modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-          var url = WebAPI.userViewCart();
-        modal.append('user_id', localStorage.getItem('user_id'));
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-           debugger
-          console.log(data.body)
-          if (data.body.status == true && data.body) {
-            debugger
-            console.log(data.body);
+    modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
+    var url = WebAPI.userViewCart();
+    modal.append('user_id', localStorage.getItem('user_id'));
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        debugger
+        console.log(data.body)
+        if (data.body.status == true && data.body) {
+          debugger
+          console.log(data.body);
           this.cartData = data.body;
           console.log(this.cartData);
           this.addressData = data.body.addresses[0];
           console.log(this.addressData);
           this.paymentMethod = data.body.payment_method_list;
           console.log(this.paymentMethod);
-          console.log("this is the total amount" +   this.cartData.amount_total)
-          
-        }else{
+          console.log("this is the total amount" + this.cartData.amount_total)
+
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
 
-  selectTimeSlot(date){
+  selectTimeSlot(date) {
     console.log("This is the selected date " + date);
     var modal = new FormData();
-          var url = WebAPI.addTimeSlot();
-          if(date == 'today'){
-          modal.append('delivery_date', this.currentDate);
-          this.selectedDate = this.currentDate;
-        }
-        else if(date == 'tomorrow'){
-          modal.append('delivery_date', this.tomorrowDate);
-          this.selectedDate = this.tomorrowDate;
-        }
-          modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-          modal.append('pincode_id', localStorage.getItem('area_id'));
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-          console.log(data.body)
-          if (data.body.status == true && data.body) {
-            console.log(data.body.time_slots);
-            this.timeSlot = data.body.time_slots;
-            console.log("this is the first time slot " + this.timeSlot[0].name);
-          
-        }else{
+    var url = WebAPI.addTimeSlot();
+    if (date == 'today') {
+      modal.append('delivery_date', this.currentDate);
+      this.selectedDate = this.currentDate;
+    }
+    else if (date == 'tomorrow') {
+      modal.append('delivery_date', this.tomorrowDate);
+      this.selectedDate = this.tomorrowDate;
+    }
+    modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
+    modal.append('pincode_id', localStorage.getItem('area_id'));
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        console.log(data.body)
+        if (data.body.status == true && data.body) {
+          console.log(data.body.time_slots);
+          this.timeSlot = data.body.time_slots;
+          console.log("this is the first time slot " + this.timeSlot[0].name);
+
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
-  placeOrder(){
+  placeOrder() {
     console.log(this.selectedTime);
     // if( this.checkOutForm.value.selectedTimeSlot == ''){
     //   this.modalService.showNotification("Select a time slot");
     //   return;
-    if (this.selectedTime == ''){
-      this.modalService.showNotification("Select a time slot");
-      return;
-    }else if(this.checkOutForm.value.selectedPayment == ''){
-      this.modalService.showNotification("Select a payment method");
-      return;
-    }else if(this.addressData == undefined){
+    if (this.addressData == undefined) {
       this.modalService.showNotification("Add an address to proceed");
       return;
     }
-    if(this.checkOutForm.value.selectedPayment == '9'){
+    if (this.selectedTime == '') {
+      this.modalService.showNotification("Select a time slot");
+      return;
+    }
+    if (this.checkOutForm.value.selectedPayment == '') {
+      this.modalService.showNotification("Select a payment method");
+      return;
+    }
+    if (this.checkOutForm.value.selectedPayment == '9') {
       this.initiateRazorPayOrder();
-    }else if(this.checkOutForm.value.selectedPayment == '5'){
+    } else if (this.checkOutForm.value.selectedPayment == '5') {
       this.initiateCashOnDelivery();
     }
-    
+
   }
-  initiateRazorPayOrder(){
+  initiateRazorPayOrder() {
     var url = WebAPI.razorPayCheckOut();
     var modal = new FormData();
     modal.append('user_id', localStorage.getItem('user_id'));
-        modal.append('order_id', localStorage.getItem('cart_id'));
-        // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
-        modal.append('time_slot_id', this.selectedTime);
-        modal.append('delivery_date', this.selectedDate);
-        modal.append('pin_id', localStorage.getItem('area_id'));
-        modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-          if (data.body.status == true && data.body) {
-            console.log("razor pay response data " + data.body);
-          
-          
-        }else{
+    modal.append('order_id', localStorage.getItem('cart_id'));
+    // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+    modal.append('time_slot_id', this.selectedTime);
+    modal.append('delivery_date', this.selectedDate);
+    modal.append('pin_id', localStorage.getItem('area_id'));
+    modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        if (data.body.status == true && data.body) {
+          console.log("razor pay response data " + data.body);
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
-  initiateCashOnDelivery(){
+  initiateCashOnDelivery() {
     var url = WebAPI.cashOnDeliveryCheckOut();
     var modal = new FormData();
-        modal.append('use_old_address_audio', "1");
-        modal.append('address_audio',"");
-        modal.append('cart_id', localStorage.getItem('cart_id'));
-        modal.append('flat_no', this.addressData.flat_no);
-        modal.append('building_name', this.addressData.building_name);
-        modal.append('street', this.addressData.street);
-        modal.append('street2', this.addressData.street2);
-        modal.append('city', this.addressData.city);
-        modal.append('user_id', localStorage.getItem('user_id'));
-        modal.append('name', this.addressData.name);
-        modal.append('mobile1', this.addressData.mobile1);
-        modal.append('email', this.addressData.email);
-        modal.append('payment_type', '1');
-        // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
-        modal.append('time_slot_id', this.selectedTime);
-        modal.append('reference', '1');
-        modal.append('delivery_date', this.selectedDate);
-        modal.append('pin_id', localStorage.getItem('area_id'));
-        modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
-        modal.append('area_id', localStorage.getItem('area_id'));
-        modal.append('is_paid', '1');
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-          console.log(data.body)
-          if (data.body.status == true && data.body) {
-            console.log("cod pay response data " + data.body);
-            this.modalService.showNotification("Order placed");
-            this.router.navigate(['']);
-          
-        }else{
+    modal.append('use_old_address_audio', "1");
+    modal.append('address_audio', "");
+    modal.append('cart_id', localStorage.getItem('cart_id'));
+    modal.append('flat_no', this.addressData.flat_no);
+    modal.append('building_name', this.addressData.building_name);
+    modal.append('street', this.addressData.street);
+    modal.append('street2', this.addressData.street2);
+    modal.append('city', this.addressData.city);
+    modal.append('user_id', localStorage.getItem('user_id'));
+    modal.append('name', this.addressData.name);
+    modal.append('mobile1', this.addressData.mobile1);
+    modal.append('email', this.addressData.email);
+    modal.append('payment_type', '1');
+    // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
+    modal.append('time_slot_id', this.selectedTime);
+    modal.append('reference', '1');
+    modal.append('delivery_date', this.selectedDate);
+    modal.append('pin_id', localStorage.getItem('area_id'));
+    modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
+    modal.append('area_id', localStorage.getItem('area_id'));
+    modal.append('is_paid', '1');
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        console.log(data.body)
+        if (data.body.status == true && data.body) {
+          console.log("cod pay response data " + data.body);
+          this.modalService.showNotification("Order placed");
+          this.router.navigate(['']);
+
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
-  viewOffers(){
+  viewOffers() {
     var url = WebAPI.getOfferList();
     var modal = new FormData();
     modal.append('user_id', localStorage.getItem('user_id'));
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-          if (data.body.status == true && data.body) {
-            console.log( data.body);
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        if (data.body.status == true && data.body) {
+          console.log(data.body);
           this.giftList = data.body.gift_list;
-          
-        }else{
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
-  applyOffer(offer){
-    if(this.selectedTime == ''){
+  applyOffer(offer) {
+    if (this.selectedTime == '') {
       this.modalService.showNotification("Select a time slot");
       return;
     }
@@ -283,27 +271,26 @@ export class CheckoutComponent implements OnInit {
     modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
     // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
     modal.append('time_slot_id', this.selectedTime);
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-          if (data.body.status == true && data.body) {
-            console.log( data.body);
-            this.cartData = data.body;
-            this.modalService.showNotification(data.body.message);
-          
-        }else{
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        if (data.body.status == true && data.body) {
+          console.log(data.body);
+          this.cartData = data.body;
+          this.modalService.showNotification(data.body.message);
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
-  removeOffer(voucher){
+  removeOffer(voucher) {
     var url = WebAPI.removeOffer();
     var modal = new FormData();
     modal.append('cart_id', localStorage.getItem('cart_id'));
@@ -313,43 +300,36 @@ export class CheckoutComponent implements OnInit {
     modal.append('warehouse_id', localStorage.getItem('warehouse_id'));
     // modal.append('time_slot_id', this.checkOutForm.value.selectedTimeSlot);
     modal.append('time_slot_id', this.selectedTime);
-       this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
-         if(data.body!==undefined){
-          if (data.body.status == true && data.body) {
-            console.log( data.body);
-            this.cartData = data.body;
-            this.modalService.showNotification(data.body.message);
-
-          
-        }else{
+    this.WebApiService.getApiData(url, modal).subscribe((data: any) => {
+      if (data.body !== undefined) {
+        if (data.body.status == true && data.body) {
+          console.log(data.body);
+          this.cartData = data.body;
+          this.modalService.showNotification(data.body.message);
+        } else {
           this.modalService.showNotification(data.body.message);
         }
       }
-      
-      }, (err: HttpErrorResponse) => {
-        if (err.status == 403) {
-          localStorage.clear()
-          this.router.navigate([''])
-        }
-      });
+
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 403) {
+        localStorage.clear()
+        this.router.navigate([''])
+      }
+    });
   }
 
-  selectedTimeSlot(selectedValue, index){
-    
-    if(this.selectedTime == ''){
+  selectedTimeSlot(selectedValue, index) {
+
+    if (this.selectedTime == '') {
       document.getElementById("slot" + index).className = "clickedButton";
-    }else{
+    } else {
       document.getElementById("slot" + this.selectedIndex).classList.remove("clickedButton");
       document.getElementById("slot" + this.selectedIndex).className = "selectDeliveryDate";
-    document.getElementById("slot" + index).className = "clickedButton";
+      document.getElementById("slot" + index).className = "clickedButton";
     }
-    this.selectedIndex =  index;
+    this.selectedIndex = index;
     this.selectedTime = selectedValue;
-    
-
-
   }
-
-  
 
 }

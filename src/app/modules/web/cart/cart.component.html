@@ -70,7 +70,7 @@
                   <h4 class="mr-auto">Total Amount</h4>
                   <span>INR</span> {{cartData.grand_total}}</li>
               </ul>
-              <button [routerLink]="['/web/checkout']" class="add_button">Checkout</button>
+              <button (click)="onClickCheckout()" class="add_button">Checkout</button>
             </div>
           </div>
         </div>
